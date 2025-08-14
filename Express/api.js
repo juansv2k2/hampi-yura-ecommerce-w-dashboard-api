@@ -5,6 +5,7 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
+const bcrypt = require("bcryptjs");
 
 const API_PORT = 3001;
 const app = express();
@@ -25,10 +26,26 @@ const storage = multer.diskStorage({
     cb(null, uniqueSuffix + ext);
   },
 });
+
+// Multer setup for avatar upload
+const avatarStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "public/images/avatars"));
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "_img";
+    const ext = path.extname(file.originalname);
+    cb(null, uniqueSuffix + ext);
+  },
+});
+
 const upload = multer({ storage });
+const uploadAvatar = multer({ storage: avatarStorage });
 
 // Load and save products data functions
 const dataPath = path.join(__dirname, "database/productsDataBase.json");
+const usersDataPath = path.join(__dirname, "database/users.json");
+
 const loadProductsData = () => {
   try {
     const data = fs.readFileSync(dataPath, "utf8");
@@ -38,12 +55,33 @@ const loadProductsData = () => {
     return [];
   }
 };
+
 const saveProductsData = (products) => {
   try {
     fs.writeFileSync(dataPath, JSON.stringify(products, null, 2), "utf8");
     return true;
   } catch (error) {
     console.error("Error saving products data:", error);
+    return false;
+  }
+};
+
+const loadUsersData = () => {
+  try {
+    const data = fs.readFileSync(usersDataPath, "utf8");
+    return JSON.parse(data);
+  } catch (error) {
+    console.error("Error loading users data:", error);
+    return [];
+  }
+};
+
+const saveUsersData = (users) => {
+  try {
+    fs.writeFileSync(usersDataPath, JSON.stringify(users, null, 2), "utf8");
+    return true;
+  } catch (error) {
+    console.error("Error saving users data:", error);
     return false;
   }
 };
@@ -102,6 +140,101 @@ app.delete("/api/products/:id", (req, res) => {
   }
 });
 
+// ============= USER MANAGEMENT ENDPOINTS =============
+
+// Get all users - API
+app.get("/api/users", (req, res) => {
+  try {
+    const users = loadUsersData();
+    const activeUsers = users.filter((user) => !user.deleted);
+    // Remove passwords from response
+    const safeUsers = activeUsers.map(({ password, ...user }) => user);
+    res.json(safeUsers);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+});
+
+// Add a new user (with optional avatar upload)
+app.post("/api/users", uploadAvatar.single("avatar"), (req, res) => {
+  console.log("POST /api/users called");
+  console.log("Body:", req.body);
+  console.log("File:", req.file);
+
+  try {
+    const users = loadUsersData();
+    
+    // Check if email already exists
+    const existingUser = users.find((u) => u.email === req.body.email && !u.deleted);
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
+    const newId = users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
+    
+    // Hash password
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    
+    let avatarFile = req.file 
+      ? req.file.filename 
+      : req.body.avatar || "default-avatar.png";
+
+    const newUser = {
+      id: newId,
+      fullName: req.body.fullName,
+      birthdate: req.body.birthdate,
+      email: req.body.email,
+      password: hashedPassword,
+      confirmPassword: req.body.password, // Store original for consistency
+      avatar: avatarFile,
+      admin: req.body.admin === "true" || req.body.admin === true ? 1 : 0,
+      deleted: false,
+    };
+
+    users.push(newUser);
+    
+    if (saveUsersData(users)) {
+      console.log("User added successfully:", newUser);
+      // Return user without password
+      const { password, ...safeUser } = newUser;
+      res.status(201).json(safeUser);
+    } else {
+      res.status(500).json({ error: "Failed to save user" });
+    }
+  } catch (error) {
+    console.error("Error adding user:", error);
+    res.status(500).json({ error: "Failed to add user" });
+  }
+});
+
+// Delete a user (soft delete)
+app.delete("/api/users/:id", (req, res) => {
+  try {
+    const users = loadUsersData();
+    const id = parseInt(req.params.id);
+    const idx = users.findIndex((u) => u.id === id);
+    
+    if (idx === -1) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    
+    // Prevent deleting the main admin user
+    if (users[idx].admin === 1 && users[idx].email === "admin@hampiyura.com") {
+      return res.status(400).json({ error: "Cannot delete main admin user" });
+    }
+    
+    users[idx].deleted = true;
+    
+    if (saveUsersData(users)) {
+      res.json({ success: true });
+    } else {
+      res.status(500).json({ error: "Failed to delete user" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete user" });
+  }
+});
+
 // API Root endpoint
 app.get("/api", (req, res) => {
   res.json({
@@ -109,6 +242,7 @@ app.get("/api", (req, res) => {
     version: "1.0.0",
     endpoints: {
       products: "/api/products",
+      users: "/api/users",
       categories: "/api/categories",
       stats: "/api/stats",
       latest: "/api/products/latest",
@@ -150,14 +284,16 @@ app.get("/api/categories", (req, res) => {
 app.get("/api/stats", (req, res) => {
   try {
     const products = loadProductsData();
+    const users = loadUsersData();
     const activeProducts = products.filter((product) => !product.deleted);
+    const activeUsers = users.filter((user) => !user.deleted);
     const categories = [
       ...new Set(activeProducts.map((p) => p.category).filter(Boolean)),
     ];
     const stats = {
       totalProducts: activeProducts.length,
       totalCategories: categories.length,
-      totalUsers: 2, // From SQL file data
+      totalUsers: activeUsers.length,
       totalRevenue: activeProducts.reduce((sum, p) => sum + (p.price || 0), 0),
     };
     res.json(stats);

@@ -1,5 +1,6 @@
 import React from "react";
 import ProductsInDb from "./ProductsInDb";
+import UsersInDb from "./UsersInDb";
 import ContentCard from "./ContentCard";
 import ContentRowTop from "./ContentRowTop";
 import Footer from "./Footer";
@@ -28,6 +29,12 @@ export default function ContentWrapper() {
               </ContentCard>
 
               <LastProductInDb />
+            </div>
+
+            <div className="row mt-4">
+              <ContentCard title="List of users in Database">
+                <UsersInDb />
+              </ContentCard>
             </div>
           </div>
         </div>
