@@ -14,25 +14,31 @@ export default function ContentWrapper() {
       <div id="content" className="bg-hampi">
         <TopNavBar />
 
-        <div className="container-fluid mt-5">
-          <ContentRowTop />
-
-          <div className="row">
-            <ContentCard title="List of products in Database">
-              <ProductsInDb />
-            </ContentCard>
-
-            <ContentCard title="List of categories in Database">
-              <CategoriesInDb />
-            </ContentCard>
-
-            <LastProductInDb />
+        <div className="container-fluid">
+          <div className="dashboard-section">
+            <ContentRowTop />
           </div>
 
-          <div className="row mt-4">
-            <ContentCard title="List of users in Database">
-              <UsersInDb />
-            </ContentCard>
+          <div className="dashboard-section">
+            <div className="row">
+              <ContentCard title="List of products in Database">
+                <ProductsInDb />
+              </ContentCard>
+
+              <LastProductInDb />
+            </div>
+          </div>
+
+          <div className="dashboard-section">
+            <div className="row">
+              <ContentCard title="List of categories in Database">
+                <CategoriesInDb />
+              </ContentCard>
+
+              <ContentCard title="List of users in Database">
+                <UsersInDb />
+              </ContentCard>
+            </div>
           </div>
         </div>
       </div>

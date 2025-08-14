@@ -13,12 +13,12 @@ function SmallCard({ title, value, iconClass, cardClass }) {
   };
 
   return (
-    <div className="col-md-3 mb-4">
-      <div className={`card ${cardClass} shadow-natural h-100 py-3 stats-card`}>
+    <div className="col-md-3 col-lg-3">
+      <div className={`card ${cardClass} shadow-natural h-100`}>
         <div className="card-body">
           <div className="row no-gutters align-items-center">
             <div className="col mr-3">
-              <div className="text-xs font-weight-bold text-uppercase mb-2 text-earth">
+              <div className="text-xs font-weight-bold text-uppercase mb-1 text-earth">
                 {title}
               </div>
               <div className="h4 mb-0 font-weight-bold text-earth">
@@ -29,7 +29,7 @@ function SmallCard({ title, value, iconClass, cardClass }) {
               </div>
             </div>
             <div className="col-auto">
-              <div className="rounded-circle bg-hampi-natural p-3 shadow">
+              <div className="rounded-circle bg-hampi-natural p-2 shadow">
                 <i
                   className={`${iconClass} fa-2x ${getIconColor()} stats-icon`}
                 ></i>

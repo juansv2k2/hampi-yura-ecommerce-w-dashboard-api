@@ -110,150 +110,248 @@ const UsersInDb = () => {
 
   return (
     <div>
-      <form
-        className="mb-4"
-        onSubmit={handleAdd}
-        style={{ background: "#f1e4d8", padding: 16, borderRadius: 8 }}
-        encType="multipart/form-data"
-      >
-        <h5>Agregar Usuario</h5>
-        <div className="row mb-3">
-          <div className="col">
-            <input
-              name="fullName"
-              value={form.fullName}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Nombre Completo"
-              required
-            />
-          </div>
-          <div className="col">
-            <input
-              name="birthdate"
-              value={form.birthdate}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Fecha de Nacimiento"
-              type="date"
-              required
-            />
-          </div>
-          <div className="col">
-            <input
-              name="email"
-              value={form.email}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Email"
-              type="email"
-              required
-            />
-          </div>
+      {/* Enhanced Add User Form */}
+      <div className="card mb-4 border-left-success">
+        <div className="card-header py-3">
+          <h6 className="m-0 font-weight-bold text-success">
+            <i className="fas fa-user-plus mr-2"></i>
+            Agregar Nuevo Usuario
+          </h6>
         </div>
-        <div className="row mb-3">
-          <div className="col">
-            <input
-              name="password"
-              value={form.password}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Contraseña"
-              type="password"
-              required
-            />
-          </div>
-          <div className="col">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleAvatar}
-              className="form-control"
-            />
-          </div>
-          <div className="col">
-            <div className="form-check mt-2">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                name="admin"
-                checked={form.admin}
-                onChange={handleInput}
-                id="adminCheck"
-              />
-              <label className="form-check-label" htmlFor="adminCheck">
-                Administrador
-              </label>
+        <div className="card-body">
+          <form onSubmit={handleAdd} encType="multipart/form-data">
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Nombre Completo *
+                </label>
+                <input
+                  name="fullName"
+                  value={form.fullName}
+                  onChange={handleInput}
+                  className="form-control"
+                  placeholder="Ingresa el nombre completo"
+                  required
+                />
+              </div>
+              <div className="col-md-6 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Email *
+                </label>
+                <input
+                  name="email"
+                  value={form.email}
+                  onChange={handleInput}
+                  className="form-control"
+                  placeholder="usuario@ejemplo.com"
+                  type="email"
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div className="col-auto">
-            <button className="btn btn-success" type="submit" disabled={adding}>
-              {adding ? "Agregando..." : "Agregar"}
-            </button>
+
+            <div className="row">
+              <div className="col-md-4 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Fecha de Nacimiento *
+                </label>
+                <input
+                  name="birthdate"
+                  value={form.birthdate}
+                  onChange={handleInput}
+                  className="form-control"
+                  type="date"
+                  required
+                />
+              </div>
+              <div className="col-md-4 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Contraseña *
+                </label>
+                <input
+                  name="password"
+                  value={form.password}
+                  onChange={handleInput}
+                  className="form-control"
+                  placeholder="Mínimo 6 caracteres"
+                  type="password"
+                  required
+                />
+              </div>
+              <div className="col-md-4 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Avatar
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatar}
+                  className="form-control"
+                />
+              </div>
+            </div>
+
+            <div className="row align-items-center">
+              <div className="col-md-6 mb-3">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="admin"
+                    checked={form.admin}
+                    onChange={handleInput}
+                    id="adminCheck"
+                  />
+                  <label
+                    className="form-check-label text-gray-800 font-weight-bold"
+                    htmlFor="adminCheck"
+                  >
+                    <i className="fas fa-crown mr-1 text-warning"></i>
+                    Privilegios de Administrador
+                  </label>
+                </div>
+              </div>
+              <div className="col-md-6 mb-3 text-right">
+                <button
+                  className="btn btn-success btn-lg px-4"
+                  type="submit"
+                  disabled={adding}
+                >
+                  <i className="fas fa-plus-circle mr-2"></i>
+                  {adding ? "Agregando..." : "Agregar Usuario"}
+                </button>
+              </div>
+            </div>
+
+            {error && (
+              <div className="alert alert-danger mt-3" role="alert">
+                <i className="fas fa-exclamation-triangle mr-2"></i>
+                {error}
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+
+      {/* Enhanced Users Table */}
+      <div className="card border-left-primary">
+        <div className="card-header py-3">
+          <h6 className="m-0 font-weight-bold text-primary">
+            <i className="fas fa-users mr-2"></i>
+            Lista de Usuarios ({users.length})
+          </h6>
+        </div>
+        <div className="card-body">
+          <div
+            className="table-responsive"
+            style={{
+              maxHeight: "400px",
+              overflowY: "auto",
+              overflowX: "auto",
+              border: "1px solid #dee2e6",
+              borderRadius: "0.25rem",
+            }}
+          >
+            <table
+              className="table table-bordered mb-0"
+              style={{ minWidth: "800px" }}
+            >
+              <thead className="bg-gray-50 sticky-top">
+                <tr>
+                  <th className="text-center">ID</th>
+                  <th className="text-center">Avatar</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th className="text-center">Fecha Nacimiento</th>
+                  <th className="text-center">Admin</th>
+                  <th className="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <td className="text-center font-weight-bold">{user.id}</td>
+                    <td className="text-center">
+                      {user.avatar ? (
+                        <img
+                          src={`http://localhost:3000/images/avatars/${user.avatar}`}
+                          alt="avatar"
+                          style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: "50%",
+                            objectFit: "cover",
+                            border: "2px solid #dee2e6",
+                          }}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: "50%",
+                            backgroundColor: "#f8f9fa",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            margin: "0 auto",
+                          }}
+                        >
+                          <i className="fas fa-user text-gray-400"></i>
+                        </div>
+                      )}
+                    </td>
+                    <td className="font-weight-bold">{user.fullName}</td>
+                    <td>{user.email}</td>
+                    <td className="text-center">{user.birthdate}</td>
+                    <td className="text-center">
+                      <span
+                        className={`badge badge-${
+                          user.admin ? "success" : "secondary"
+                        } px-3 py-2`}
+                      >
+                        {user.admin ? (
+                          <>
+                            <i className="fas fa-crown mr-1"></i>
+                            Admin
+                          </>
+                        ) : (
+                          <>
+                            <i className="fas fa-user mr-1"></i>
+                            Usuario
+                          </>
+                        )}
+                      </span>
+                    </td>
+                    <td className="text-center">
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleDelete(user.id, user.email)}
+                        disabled={user.email === "admin@hampiyura.com"}
+                        title={
+                          user.email === "admin@hampiyura.com"
+                            ? "No se puede eliminar el usuario principal"
+                            : "Eliminar usuario"
+                        }
+                      >
+                        <i className="fas fa-trash mr-1"></i>
+                        {user.email === "admin@hampiyura.com"
+                          ? "Protegido"
+                          : "Eliminar"}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {users.length === 0 && (
+              <div className="text-center text-muted py-4">
+                <i className="fas fa-users fa-3x text-gray-300 mb-3"></i>
+                <p className="text-gray-500">No hay usuarios registrados</p>
+              </div>
+            )}
           </div>
         </div>
-        {error && <div className="text-danger mt-2">{error}</div>}
-      </form>
-
-      <div className="table-responsive">
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Avatar</th>
-              <th>Nombre</th>
-              <th>Email</th>
-              <th>Fecha Nacimiento</th>
-              <th>Admin</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>
-                  {user.avatar && (
-                    <img
-                      src={`http://localhost:3000/images/avatars/${user.avatar}`}
-                      alt="avatar"
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: "50%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
-                </td>
-                <td>{user.fullName}</td>
-                <td>{user.email}</td>
-                <td>{user.birthdate}</td>
-                <td>
-                  <span
-                    className={`badge ${
-                      user.admin ? "bg-success" : "bg-secondary"
-                    }`}
-                  >
-                    {user.admin ? "Sí" : "No"}
-                  </span>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => handleDelete(user.id, user.email)}
-                    disabled={user.email === "admin@hampiyura.com"}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {users.length === 0 && (
-          <div className="text-center text-muted">No users found</div>
-        )}
       </div>
     </div>
   );

@@ -25,9 +25,21 @@ body {
 
 #content {
   flex: 1 0 auto;
-  padding: 0 15px; /* Add horizontal padding */
-  max-width: 100%; /* Prevent content from exceeding container */
-  overflow-x: auto; /* Allow horizontal scroll if needed for tables */
+  padding: 1.5rem 15px; /* Consistent padding */
+  max-width: 100%;
+  overflow-x: hidden; /* Remove horizontal scrollbar */
+  min-height: calc(100vh - 60px); /* Account for header */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  list-style: none;
+  padding: 0.5rem 1rem;
 }
 
 /* Sidebar Styles - Natural Earth Tones */
@@ -36,7 +48,6 @@ body {
   min-height: 100vh;
   background: linear-gradient(180deg, #3d5f2b 0%, #477c34 50%, #84c3c3 100%);
   box-shadow: 0 0.25rem 2rem 0 rgba(66, 38, 19, 0.2);
-  border-right: 3px solid #b3977f;
 }
 
 .sidebar .nav-link {
@@ -192,30 +203,11 @@ body {
   }
 }
 
-/* Card Styles - Enhanced with Natural Design */
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background: linear-gradient(135deg, #fff 0%, #f1e4d8 100%);
-  background-clip: border-box;
-  border: 1px solid #daa4a1;
-  border-radius: 0.75rem;
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(66, 38, 19, 0.1);
-  transition: all 0.3s ease;
-}
+/* Card Styles - Enhanced with Natural Design (Updated for Alignment) */
 
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 0.5rem 2rem 0 rgba(66, 38, 19, 0.15);
-}
-
-.card-body {
-  flex: 1 1 auto;
-  min-height: 1px;
-  padding: 1.5rem;
 }
 
 .border-left-primary {
@@ -346,17 +338,17 @@ body {
 }
 
 .table-bordered {
-  border: 1px solid #daa4a1;
+  border: 1px solid #e3e6f0;
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid rgba(179, 151, 127, 0.2);
+  border: 1px solid #e3e6f0;
 }
 
 .table tbody tr:hover {
-  background-color: rgba(241, 228, 216, 0.3);
-  transition: background-color 0.2s ease;
+  background-color: rgba(177, 164, 145, 0.1);
+  transition: background-color 0.15s ease;
 }
 
 /* Table action buttons */
@@ -454,7 +446,51 @@ body {
   border-radius: 0.35rem;
 }
 
-/* Spacing Utilities */
+/* Spacing Utilities - Complete System */
+/* Margin utilities */
+.m-0 {
+  margin: 0 !important;
+}
+.m-1 {
+  margin: 0.25rem !important;
+}
+.m-2 {
+  margin: 0.5rem !important;
+}
+.m-3 {
+  margin: 1rem !important;
+}
+.m-4 {
+  margin: 1.5rem !important;
+}
+.m-5 {
+  margin: 3rem !important;
+}
+
+/* Margin top */
+.mt-0 {
+  margin-top: 0 !important;
+}
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+.mt-3 {
+  margin-top: 1rem !important;
+}
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+/* Margin bottom */
+.mb-0 {
+  margin-bottom: 0 !important;
+}
 .mb-1 {
   margin-bottom: 0.25rem !important;
 }
@@ -467,24 +503,243 @@ body {
 .mb-4 {
   margin-bottom: 1.5rem !important;
 }
-.mt-2 {
-  margin-top: 0.5rem !important;
+.mb-5 {
+  margin-bottom: 3rem !important;
 }
-.mt-3 {
-  margin-top: 1rem !important;
+
+/* Margin left */
+.ml-0 {
+  margin-left: 0 !important;
 }
-.mt-5 {
-  margin-top: 3rem !important;
+.ml-1 {
+  margin-left: 0.25rem !important;
+}
+.ml-2 {
+  margin-left: 0.5rem !important;
 }
 .ml-3 {
   margin-left: 1rem !important;
 }
+.ml-4 {
+  margin-left: 1.5rem !important;
+}
+.ml-5 {
+  margin-left: 3rem !important;
+}
+.ml-auto {
+  margin-left: auto !important;
+}
+
+/* Margin right */
+.mr-0 {
+  margin-right: 0 !important;
+}
+.mr-1 {
+  margin-right: 0.25rem !important;
+}
 .mr-2 {
   margin-right: 0.5rem !important;
 }
+.mr-3 {
+  margin-right: 1rem !important;
+}
+.mr-4 {
+  margin-right: 1.5rem !important;
+}
+.mr-5 {
+  margin-right: 3rem !important;
+}
 
+/* Margin horizontal */
+.mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.mx-1 {
+  margin-left: 0.25rem !important;
+  margin-right: 0.25rem !important;
+}
+.mx-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+.mx-3 {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+.mx-4 {
+  margin-left: 1.5rem !important;
+  margin-right: 1.5rem !important;
+}
+.mx-5 {
+  margin-left: 3rem !important;
+  margin-right: 3rem !important;
+}
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Margin vertical */
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.my-1 {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+.my-2 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+.my-3 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.my-4 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+.my-5 {
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+
+/* Padding utilities */
+.p-0 {
+  padding: 0 !important;
+}
+.p-1 {
+  padding: 0.25rem !important;
+}
+.p-2 {
+  padding: 0.5rem !important;
+}
 .p-3 {
   padding: 1rem !important;
+}
+.p-4 {
+  padding: 1.5rem !important;
+}
+.p-5 {
+  padding: 3rem !important;
+}
+
+/* Padding top */
+.pt-0 {
+  padding-top: 0 !important;
+}
+.pt-1 {
+  padding-top: 0.25rem !important;
+}
+.pt-2 {
+  padding-top: 0.5rem !important;
+}
+.pt-3 {
+  padding-top: 1rem !important;
+}
+.pt-4 {
+  padding-top: 1.5rem !important;
+}
+.pt-5 {
+  padding-top: 3rem !important;
+}
+
+/* Padding bottom */
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+.pb-1 {
+  padding-bottom: 0.25rem !important;
+}
+.pb-2 {
+  padding-bottom: 0.5rem !important;
+}
+.pb-3 {
+  padding-bottom: 1rem !important;
+}
+.pb-4 {
+  padding-bottom: 1.5rem !important;
+}
+.pb-5 {
+  padding-bottom: 3rem !important;
+}
+
+/* Padding left */
+.pl-0 {
+  padding-left: 0 !important;
+}
+.pl-1 {
+  padding-left: 0.25rem !important;
+}
+.pl-2 {
+  padding-left: 0.5rem !important;
+}
+.pl-3 {
+  padding-left: 1rem !important;
+}
+.pl-4 {
+  padding-left: 1.5rem !important;
+}
+.pl-5 {
+  padding-left: 3rem !important;
+}
+
+/* Padding right */
+.pr-0 {
+  padding-right: 0 !important;
+}
+.pr-1 {
+  padding-right: 0.25rem !important;
+}
+.pr-2 {
+  padding-right: 0.5rem !important;
+}
+.pr-3 {
+  padding-right: 1rem !important;
+}
+.pr-4 {
+  padding-right: 1.5rem !important;
+}
+.pr-5 {
+  padding-right: 3rem !important;
+}
+
+/* Padding horizontal */
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.px-1 {
+  padding-left: 0.25rem !important;
+  padding-right: 0.25rem !important;
+}
+.px-2 {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+.px-3 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+.px-4 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+.px-5 {
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+/* Padding vertical */
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.py-1 {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
 }
 .py-2 {
   padding-top: 0.5rem !important;
@@ -494,47 +749,199 @@ body {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+.py-5 {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
 
-/* Layout */
+/* =============================================================================
+   DASHBOARD LAYOUT ALIGNMENT FIXES
+   ============================================================================= */
+
+/* Ensure consistent card heights and alignment */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background: linear-gradient(135deg, #fff 0%, #f1e4d8 100%);
+  background-clip: border-box;
+  border: 1px solid #daa4a1;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(66, 38, 19, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 0; /* Remove any default margins */
+  height: 100%; /* Ensure consistent height */
+}
+
+/* Consistent row spacing with proper margins */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: 1.5rem; /* Add consistent spacing between rows */
+}
+
+.row:last-child {
+  margin-bottom: 0; /* Remove margin from last row */
+}
+
+/* Ensure all columns have consistent padding */
+[class*="col-"] {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 1.5rem; /* Add bottom margin to all columns */
+}
+
+/* Dashboard container spacing */
 .container-fluid {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-.row {
+/* Card body consistent spacing */
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.5rem; /* Consistent padding for all cards */
   display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
 }
 
-.col-md-3,
-.col-md-6,
-.col-md-9,
-.col-md-12 {
-  position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+/* Remove py-2, py-3 overrides on cards for consistency */
+.card.py-2,
+.card.py-3 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
+
+/* Dashboard specific spacing overrides */
+.dashboard-section {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-section:last-child {
+  margin-bottom: 0;
+}
+
+/* =============================================================================
+   RESPONSIVE DASHBOARD FIXES
+   ============================================================================= */
+
+/* Ensure tables don't break card layout */
+.card-content {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.table-responsive {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  #content {
+    padding: 1rem 10px;
+  }
+
+  .container-fluid {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  [class*="col-"] {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .row {
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Layout - Updated for Consistent Alignment */
 
 @media (min-width: 768px) {
   .col-md-3 {
     flex: 0 0 25%;
     max-width: 25%;
   }
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
   .col-md-6 {
     flex: 0 0 50%;
     max-width: 50%;
+  }
+  .col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
   }
   .col-md-9 {
     flex: 0 0 75%;
     max-width: 75%;
   }
   .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Large screen optimizations for even better space usage */
+@media (min-width: 1200px) {
+  .col-lg-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+  .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-lg-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-lg-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  .col-lg-10 {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+  .col-lg-12 {
     flex: 0 0 100%;
     max-width: 100%;
   }
@@ -611,7 +1018,9 @@ body {
 /* Responsive */
 @media (max-width: 767px) {
   .col-md-3,
+  .col-md-4,
   .col-md-6,
+  .col-md-8,
   .col-md-9,
   .col-md-12 {
     flex: 0 0 100%;
@@ -729,4 +1138,72 @@ body {
   animation: pulse 1.5s ease-in-out infinite;
   color: #3d5f2b;
   font-weight: 600;
+}
+
+/* Enhanced Table Scrollbars and Sticky Headers */
+.table-responsive {
+  scrollbar-width: thin;
+  scrollbar-color: #b3977f #f8f9fa;
+  overflow: auto; /* Enable both horizontal and vertical scrolling */
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #b3977f, #d4c3b3);
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #9d8367, #c4b3a3);
+}
+
+.table-responsive::-webkit-scrollbar-corner {
+  background: #f8f9fa;
+}
+
+/* Sticky Table Headers */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #f8f9fc !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Table Styling */
+.table-bordered {
+  border-color: #e3e6f0;
+  white-space: nowrap; /* Prevent text wrapping to maintain column widths */
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-color: #e3e6f0;
+  vertical-align: middle;
+  padding: 0.75rem;
+  white-space: nowrap; /* Prevent cell content from wrapping */
+}
+
+/* Table Row Hover Effects */
+.table tbody tr:hover {
+  background-color: rgba(177, 164, 145, 0.1);
+  transition: background-color 0.15s ease;
+}
+
+/* Badge Enhancements for Tables */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }

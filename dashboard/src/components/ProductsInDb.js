@@ -84,110 +84,203 @@ const ProductsInDb = () => {
 
   return (
     <div>
-      <form
-        className="mb-4"
-        onSubmit={handleAdd}
-        style={{ background: "#f1e4d8", padding: 16, borderRadius: 8 }}
-        encType="multipart/form-data"
-      >
-        <h5>Agregar producto</h5>
-        <div className="row">
-          <div className="col">
-            <input
-              name="name"
-              value={form.name}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Nombre"
-              required
-            />
-          </div>
-          <div className="col">
-            <input
-              name="price"
-              value={form.price}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Precio"
-              type="number"
-              min="0"
-              step="0.01"
-              required
-            />
-          </div>
-          <div className="col">
-            <input
-              name="category"
-              value={form.category}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Categoría"
-              required
-            />
-          </div>
-          <div className="col">
-            <input
-              name="stock"
-              value={form.stock}
-              onChange={handleInput}
-              className="form-control"
-              placeholder="Stock"
-              type="number"
-              min="0"
-            />
-          </div>
-          <div className="col">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImage}
-              className="form-control"
-            />
-          </div>
-          <div className="col-auto">
-            <button className="btn btn-success" type="submit" disabled={adding}>
-              Agregar
-            </button>
+      {/* Enhanced Add Product Form */}
+      <div className="card mb-4 border-left-info">
+        <div className="card-header py-3">
+          <h6 className="m-0 font-weight-bold text-info">
+            <i className="fas fa-box mr-2"></i>
+            Agregar Nuevo Producto
+          </h6>
+        </div>
+        <div className="card-body">
+          <form onSubmit={handleAdd} encType="multipart/form-data">
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Nombre del Producto *
+                </label>
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleInput}
+                  className="form-control"
+                  placeholder="Ingresa el nombre del producto"
+                  required
+                />
+              </div>
+              <div className="col-md-3 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Precio *
+                </label>
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">$</span>
+                  </div>
+                  <input
+                    name="price"
+                    value={form.price}
+                    onChange={handleInput}
+                    className="form-control"
+                    placeholder="0.00"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-md-3 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Stock
+                </label>
+                <input
+                  name="stock"
+                  value={form.stock}
+                  onChange={handleInput}
+                  className="form-control"
+                  placeholder="Cantidad"
+                  type="number"
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Categoría *
+                </label>
+                <input
+                  name="category"
+                  value={form.category}
+                  onChange={handleInput}
+                  className="form-control"
+                  placeholder="Ej: Fitoterapia, Suplementos, etc."
+                  required
+                />
+              </div>
+              <div className="col-md-6 mb-3">
+                <label className="form-label text-gray-800 font-weight-bold">
+                  Imagen del Producto
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImage}
+                  className="form-control"
+                />
+              </div>
+            </div>
+
+            <div className="row align-items-center">
+              <div className="col-md-6 mb-3">
+                {error && (
+                  <div className="alert alert-danger" role="alert">
+                    <i className="fas fa-exclamation-triangle mr-2"></i>
+                    {error}
+                  </div>
+                )}
+              </div>
+              <div className="col-md-6 mb-3 text-right">
+                <button
+                  className="btn btn-info btn-lg px-4"
+                  type="submit"
+                  disabled={adding}
+                >
+                  <i className="fas fa-plus-circle mr-2"></i>
+                  {adding ? "Agregando..." : "Agregar Producto"}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {/* Enhanced Products Table */}
+      <div className="card border-left-warning">
+        <div className="card-header py-3">
+          <h6 className="m-0 font-weight-bold text-warning">
+            <i className="fas fa-boxes mr-2"></i>
+            Lista de Productos ({products.length})
+          </h6>
+        </div>
+        <div className="card-body">
+          <div
+            className="table-responsive"
+            style={{
+              maxHeight: "400px",
+              overflowY: "auto",
+              overflowX: "auto",
+              border: "1px solid #dee2e6",
+              borderRadius: "0.25rem",
+            }}
+          >
+            <table
+              className="table table-bordered mb-0"
+              style={{ minWidth: "700px" }}
+            >
+              <thead className="bg-gray-50 sticky-top">
+                <tr>
+                  <th className="text-center">ID</th>
+                  <th>Nombre</th>
+                  <th className="text-center">Precio</th>
+                  <th className="text-center">Categoría</th>
+                  <th className="text-center">Stock</th>
+                  <th className="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product.id}>
+                    <td className="text-center font-weight-bold">
+                      {product.id}
+                    </td>
+                    <td className="font-weight-bold">{product.name}</td>
+                    <td className="text-center">
+                      <span className="badge badge-success px-3 py-2">
+                        ${parseFloat(product.price).toFixed(2)}
+                      </span>
+                    </td>
+                    <td className="text-center">
+                      <span className="badge badge-info px-3 py-2">
+                        {product.category || "Sin categoría"}
+                      </span>
+                    </td>
+                    <td className="text-center">
+                      <span
+                        className={`badge badge-${
+                          product.stock > 10
+                            ? "success"
+                            : product.stock > 0
+                            ? "warning"
+                            : "danger"
+                        } px-3 py-2`}
+                      >
+                        {product.stock || 0} unidades
+                      </span>
+                    </td>
+                    <td className="text-center">
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleDelete(product.id)}
+                        title="Eliminar producto"
+                      >
+                        <i className="fas fa-trash mr-1"></i>
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {products.length === 0 && (
+              <div className="text-center text-muted py-4">
+                <i className="fas fa-boxes fa-3x text-gray-300 mb-3"></i>
+                <p className="text-gray-500">No hay productos registrados</p>
+              </div>
+            )}
           </div>
         </div>
-        {error && <div className="text-danger mt-2">{error}</div>}
-      </form>
-
-      <div className="table-responsive">
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Categoría</th>
-              <th>Stock</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>${product.price}</td>
-                <td>{product.category || "N/A"}</td>
-                <td>{product.stock || "N/A"}</td>
-                <td>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => handleDelete(product.id)}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {products.length === 0 && (
-          <div className="text-center text-muted">No products found</div>
-        )}
       </div>
     </div>
   );
