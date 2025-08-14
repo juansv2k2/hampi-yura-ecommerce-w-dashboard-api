@@ -2,7 +2,7 @@
 <html lang="en">
 
         <%- include("partials/head") %>
-        <link rel="stylesheet" href="/css/carrito.css" />
+        <link rel="stylesheet" href="/css/carrito-productos.css" />
         <script defer src="/js/cart.js"></script>
     </head>
 
@@ -12,53 +12,67 @@
         <main>
             <div class="below-head-bar">
 
-                <h3 class="title">Carrito</h3>
+                <h3 class="title text-center padding-24">Carrito de Compras</h3>
                 <div class="cart-box-location">
         
-                <div class="cart-box">
-                    <div>
-                        <div class="cart-flex m-2">
-                            <p class="title">Producto</p>
-                            <p class="title">Unidades</p>
-                            <p class="title">Precio</p>
-                        </div>
+                <div class="cart-box padding-24">
                     
-                    <% if (e && cart ) { %> 
-                        <% for (let product of cart.products) { %> 
-                        <div class="cart-product-container">
-                            <div class="cart-flex color">
-                                <div class="cart-info">
-                                    <img src="../images/product-images/<%= product.image %> ">
-                                    <div>
-                                        <p><%= product.name %></p>
-                                        <form action="/carrito/borrar/<%= product.id %>?_method=DELETE" method="POST">
-                                            <button type="submit">Quitar</button></form>
-                                        <!-- <a href="/carrito/borrar/<%= product.id %>">Quitar</a> -->
-                                    </div>
-                                </div>
-                                <input id="stock" type="number" value="1">
-                                <p class="article-price"><%= product.price %> </p>
+                    <% if (e && cart && cart.products && cart.products.length > 0) { %> 
+                        <div class="cart-header">
+                            <div class="cart-flex m-2" style="border-bottom: 2px solid #ddd; padding-bottom: 12px;">
+                                <div style="flex: 1;"><strong>Producto</strong></div>
+                                <div style="min-width: 100px; text-align: center;"><strong>Cantidad</strong></div>
+                                <div style="min-width: 100px; text-align: right;"><strong>Precio</strong></div>
                             </div>
                         </div>
-                         
-                        <% } %> 
-                        <% } else { %> 
-                            No tenes productos en el carrito
-                            <% } %> 
-                     
-                        <section class="container-envio">
-                            <h2>Informacion de envio</h2>
-                            <!-- <!-- <div>Precio Parcial: 4000</div>
-                            <div>Envio: 500</div> -->
-                            <!-- <div>Precio Total:  -->
-                        </section>
-                        <div class="button-location">
-                            <form action="/carrito/comprar?_method=PUT" enctype="multipart/form-data" method="POST">
-                            <button class="button" type="submit" placeholder="Proceder a Pagar">
-                                Proceder a pagar
-                            </button>
-                        </form>
+                        
+                        <% for (let item of cart.products) { %> 
+                        <div class="cart-product-container">
+                            <div class="cart-flex">
+                                <div class="cart-info">
+                                    <img src="/images/product-images/<%= item.product.image %>" alt="<%= item.product.name %>">
+                                    <div>
+                                        <p><%= item.product.name %></p>
+                                        <form action="/carrito/remove/<%= item.productId %>" method="POST" style="margin-top: 8px;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn-remove">Quitar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="quantity-section">
+                                    <form action="/carrito/update/<%= item.productId %>" method="POST" class="quantity-form">
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <input type="number" name="quantity" value="<%= item.quantity %>" min="1" max="10" onchange="this.form.submit()">
+                                    </form>
+                                </div>
+                                <p class="article-price">$<%= item.subTotal.toFixed(2) %></p>
+                            </div>
                         </div>
+                        <% } %> 
+                        
+                        <div class="cart-total">
+                            <h3>Total: $<%= cart.total.toFixed(2) %></h3>
+                        </div>
+                        
+                        <section class="container-envio padding-24">
+                            <h3>Información de envío</h3>
+                            <p>El envío será calculado en el siguiente paso.</p>
+                        </section>
+                        
+                        <div class="button-location text-center padding-24">
+                            <form action="/carrito/checkout" method="POST">
+                                <button class="boton-añadir" type="submit" style="width: 100%; max-width: 300px;">
+                                    Proceder a pagar
+                                </button>
+                            </form>
+                        </div>
+                        
+                    <% } else { %> 
+                        <div class="empty-cart">
+                            <p>No tienes productos en el carrito</p>
+                            <a href="/products" class="btn-primary">Continuar comprando</a>
+                        </div>
+                    <% } %>
 
                     </div>
                 </div>

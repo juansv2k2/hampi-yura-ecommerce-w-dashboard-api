@@ -15,6 +15,118 @@
   top: 1%;
   left: 60%;
 }
+
+/* Cart specific styles */
+.cart-product-container {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 0;
+  margin-bottom: 16px;
+}
+
+.cart-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cart-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.cart-info img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.cart-info div {
+  flex: 1;
+}
+
+.cart-info p {
+  margin: 0 0 8px 0;
+  font-weight: 500;
+  color: #333;
+}
+
+.quantity-section {
+  min-width: 100px;
+  text-align: center;
+}
+
+.quantity-form input[type="number"] {
+  width: 60px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.article-price {
+  min-width: 100px;
+  text-align: right;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.btn-remove {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-remove:hover {
+  background: #c82333;
+}
+
+.cart-total {
+  border-top: 2px solid #333;
+  padding-top: 16px;
+  margin-top: 24px;
+  text-align: right;
+}
+
+.cart-total h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.empty-cart p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.btn-primary {
+  background: #a67d7e;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: #8b6a6b;
+  color: white;
+}
+
 .boton-cantidad-cart {
   width: 50%;
   border: 1px solid white;
@@ -66,18 +178,15 @@
   /*padding: 5%;*/
 }
 
-
 .titulo-otros {
   /*margin-left: 10%;*/
   padding: 8px 24px;
 }
 
-
 .contenedor-scroll {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
-  
 }
 
 .contenedor-scroll .card {
@@ -127,7 +236,7 @@
   font-weight: bold;
 }
 
-.boton-añadir-op:hover{
+.boton-añadir-op:hover {
   background-color: white;
   color: #a67d7e;
   border: 1px solid #a67d7e;
@@ -138,29 +247,171 @@
   border: 1px solid white;
   text-align: center;
   padding: 5%;
- 
 }
 
-.boton-añadir {
+/* =============================================================================
+   UNIFIED BUTTON SYSTEM - Hampi Yura E-commerce
+   ============================================================================= */
+
+/* Primary Button - Main actions (Add to cart, Submit forms) */
+.boton-añadir,
+.btn-primary-hampi {
   font-size: 14px;
+  font-weight: 600;
   color: white;
-  background-color: #a67d7e;
-  border: 1px solid #a67d7e;
-  display: block;
-  padding: 5%;
-  
+  background: linear-gradient(135deg, #3d5f2b 0%, #477c34 100%);
+  border: 2px solid #3d5f2b;
+  display: inline-block;
+  padding: 12px 20px;
   text-align: center;
-  margin-top: 15px;
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(61, 95, 43, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
 }
 
-.boton-añadir:hover{
-  background-color: white;
-  border: 1px solid #a67d7e;
-  color: #a67d7e
-  
+.boton-añadir:hover,
+.btn-primary-hampi:hover {
+  background: linear-gradient(135deg, #2e4520 0%, #356028 100%);
+  border-color: #2e4520;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(61, 95, 43, 0.3);
 }
 
-.max-w-500{
+.boton-añadir:active,
+.btn-primary-hampi:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(61, 95, 43, 0.2);
+}
+
+/* Secondary Button - Secondary actions */
+.btn-secondary-hampi {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3d5f2b;
+  background: linear-gradient(135deg, #f1e4d8 0%, #daa4a1 100%);
+  border: 2px solid #3d5f2b;
+  display: inline-block;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(61, 95, 43, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-secondary-hampi:hover {
+  background: linear-gradient(135deg, #3d5f2b 0%, #477c34 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(61, 95, 43, 0.2);
+}
+
+/* Danger Button - Delete actions */
+.btn-danger-hampi {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #a67d7e 0%, #8b6163 100%);
+  border: 2px solid #a67d7e;
+  display: inline-block;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(166, 125, 126, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-danger-hampi:hover {
+  background: linear-gradient(135deg, #8b6163 0%, #734e50 100%);
+  border-color: #8b6163;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(166, 125, 126, 0.3);
+}
+
+/* Info Button - Information actions */
+.btn-info-hampi {
+  font-size: 14px;
+  font-weight: 600;
+  color: #422613;
+  background: linear-gradient(135deg, #84c3c3 0%, #a0d4d4 100%);
+  border: 2px solid #84c3c3;
+  display: inline-block;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(132, 195, 195, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-info-hampi:hover {
+  background: linear-gradient(135deg, #6fb3b3 0%, #84c3c3 100%);
+  border-color: #6fb3b3;
+  color: #422613;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(132, 195, 195, 0.3);
+}
+
+/* Button Sizes */
+.btn-sm-hampi {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.btn-lg-hampi {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+/* Full Width Button */
+.btn-block-hampi,
+.w-100 {
+  width: 100%;
+  display: block;
+}
+
+/* Button Groups */
+.btn-group-hampi {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-group-hampi .boton-añadir,
+.btn-group-hampi [class*="btn-"] {
+  margin-top: 0;
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Legacy button compatibility - keeps old .boton-añadir working */
+.boton-añadir.tx-white {
+  color: white !important;
+}
+
+.max-w-500 {
   max-width: 500px;
   height: auto;
 }
@@ -170,7 +421,7 @@
   height: 300px;
 }
 
-.prod-cart-box{
+.prod-cart-box {
   border: 1px solid #848d7e;
   margin-left: 24px;
   margin-right: 24px;
@@ -178,8 +429,7 @@
 
 .p-cart {
   width: 200px;
-  
-  
+
   white-space: nowrap;
   overflow: hidden;
 }
@@ -188,3 +438,98 @@
   text-overflow: ellipsis;
 }
 
+/* =============================================================================
+   RESPONSIVE LAYOUT FIXES
+   ============================================================================= */
+
+/* Prevent horizontal overflow */
+.container-fluid,
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+  max-width: 100%;
+}
+
+/* Product grid responsiveness */
+.contenedor-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+
+.contenedor-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.contenedor-scroll::-webkit-scrollbar-track {
+  background: #f1e4d8;
+  border-radius: 3px;
+}
+
+.contenedor-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #b3977f, #dd9859);
+  border-radius: 3px;
+}
+
+/* Product detail layout fixes */
+.prod-detail {
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .prod-detail {
+    flex-direction: column;
+  }
+
+  .prod-detail .w-100 {
+    width: 100% !important;
+  }
+
+  .px-48 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .btn-group-hampi {
+    flex-direction: column;
+  }
+
+  .btn-group-hampi .w-50 {
+    width: 100% !important;
+    margin-bottom: 8px;
+  }
+
+  .btn-group-hampi .w-50:last-child {
+    margin-bottom: 0;
+  }
+
+  .prod-cart-box {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .p-cart {
+    width: 100px;
+  }
+}
+
+/* Image responsiveness */
+.img-prod,
+.w-100 img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Form responsiveness */
+.form-control {
+  max-width: 100%;
+  box-sizing: border-box;
+}

@@ -36,6 +36,10 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// User session middleware
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
+app.use(userLoggedMiddleware);
+
 // Load products data function (for API endpoints)
 const loadProductsData = () => {
   try {
@@ -54,11 +58,13 @@ const loadProductsData = () => {
 const mainRoutes = require("./routes/mainRoutes");
 const productsRoutes = require("./routes/productsRoutes");
 const userRoutes = require("./routes/userRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 // Use route modules
 app.use("/", mainRoutes);
 app.use("/products", productsRoutes);
 app.use("/user", userRoutes);
+app.use("/carrito", cartRoutes);
 
 // 404 handler for web routes
 app.use((req, res, next) => {

@@ -9,12 +9,12 @@
 //--> Creo un obj lit con los métodos
 
 const fs = require("fs");
+const path = require("path");
 const bcryptjs = require("bcryptjs");
-const { User, Cart } = require("../database/models");
 
 const userService = {
   //--> hacemos referencia al nombre del archivo que queremos utilizar.
-  fileName: "./database/users.json",
+  fileName: path.join(__dirname, "../database/users.json"),
 
   //--> traemos los users, leemos el archivo .json en formato de array (method parse)
   getData: function () {
@@ -47,14 +47,10 @@ const userService = {
 
   //--> me permite buscar por un determinado nombre de campo, el primero que encuentra, matchea.
   //--> luego en controllers, busca por el campo "email", req.body.email.
-  findByField: async function (field, text) {
-
-    const user = await User.findOne({
-      where:{
-        [field]: text,
-      }
-    })
-    return user;
+  findByField: function (field, text) {
+    let allUsers = this.findAll();
+    let userFound = allUsers.find((oneUser) => oneUser[field] === text);
+    return userFound;
   },
 
   //--> creamos un user, y guardamos esa info en nuestro .json con push
@@ -66,11 +62,46 @@ const userService = {
       id: this.generateId(),
       admin: 0,
       password: bcryptjs.hashSync(payload.password, 10),
-      avatar: avatar.filename,
+      avatar: avatar ? avatar.filename : "default-avatar.png",
     };
     allUsers.push(newUser);
     fs.writeFileSync(this.fileName, JSON.stringify(allUsers, null, " "));
     return newUser;
+  },
+
+  //--> editar un usuario
+  editOne: function (id, payload, avatar) {
+    let allUsers = this.getData();
+    let userIndex = allUsers.findIndex((user) => user.id == id);
+
+    if (userIndex !== -1) {
+      let userToEdit = allUsers[userIndex];
+
+      // Update fields
+      userToEdit.fullName = payload.fullName || userToEdit.fullName;
+      userToEdit.birthdate = payload.birthdate || userToEdit.birthdate;
+      userToEdit.email = payload.email || userToEdit.email;
+
+      // Update password only if provided
+      if (payload.password && payload.password.trim() !== "") {
+        userToEdit.password = bcryptjs.hashSync(payload.password, 10);
+      }
+
+      // Update avatar if provided
+      if (avatar) {
+        userToEdit.avatar = avatar.filename;
+      }
+
+      // Update admin status if provided
+      if (payload.admin !== undefined) {
+        userToEdit.admin = payload.admin ? 1 : 0;
+      }
+
+      // Save back to file
+      fs.writeFileSync(this.fileName, JSON.stringify(allUsers, null, " "));
+      return userToEdit;
+    }
+    return null;
   },
 
   //--> traigo todos los usuarios, recorro los users con filter

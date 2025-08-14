@@ -15,10 +15,10 @@ router.get("/register", guestMiddleware, usersController.register);
 
 // Procesar el registro
 router.post(
-    "/register",
-    uploadFile.single("avatar"),
-    validations,
-    usersController.processRegister
+  "/register",
+  uploadFile.single("avatar"),
+  validations,
+  usersController.processRegister
 );
 
 // Formulario de login
@@ -31,12 +31,11 @@ router.post("/login", usersController.loginProcess);
 router.get("/logout", usersController.logout);
 
 // Perfil de Usuario
-router.get("/:id", authMiddleware, usersController.profile);
+router.get("/userProfile", authMiddleware, usersController.profile);
 
 // Edit - Perfil de Usuario
-
-// Logout
-router.get("/logout", usersController.logout);
+router.get("/edit/:id", authMiddleware, usersController.edit);
+router.put("/edit/:id", uploadFile.single("avatar"), usersController.update);
 
 /*Carrito
 router.get("/cart", usersController.cart);

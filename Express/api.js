@@ -163,20 +163,23 @@ app.post("/api/users", uploadAvatar.single("avatar"), (req, res) => {
 
   try {
     const users = loadUsersData();
-    
+
     // Check if email already exists
-    const existingUser = users.find((u) => u.email === req.body.email && !u.deleted);
+    const existingUser = users.find(
+      (u) => u.email === req.body.email && !u.deleted
+    );
     if (existingUser) {
       return res.status(400).json({ error: "Email already exists" });
     }
 
-    const newId = users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
-    
+    const newId =
+      users.length > 0 ? Math.max(...users.map((u) => u.id)) + 1 : 1;
+
     // Hash password
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-    
-    let avatarFile = req.file 
-      ? req.file.filename 
+
+    let avatarFile = req.file
+      ? req.file.filename
       : req.body.avatar || "default-avatar.png";
 
     const newUser = {
@@ -192,7 +195,7 @@ app.post("/api/users", uploadAvatar.single("avatar"), (req, res) => {
     };
 
     users.push(newUser);
-    
+
     if (saveUsersData(users)) {
       console.log("User added successfully:", newUser);
       // Return user without password
@@ -213,18 +216,18 @@ app.delete("/api/users/:id", (req, res) => {
     const users = loadUsersData();
     const id = parseInt(req.params.id);
     const idx = users.findIndex((u) => u.id === id);
-    
+
     if (idx === -1) {
       return res.status(404).json({ error: "User not found" });
     }
-    
+
     // Prevent deleting the main admin user
     if (users[idx].admin === 1 && users[idx].email === "admin@hampiyura.com") {
       return res.status(400).json({ error: "Cannot delete main admin user" });
     }
-    
+
     users[idx].deleted = true;
-    
+
     if (saveUsersData(users)) {
       res.json({ success: true });
     } else {

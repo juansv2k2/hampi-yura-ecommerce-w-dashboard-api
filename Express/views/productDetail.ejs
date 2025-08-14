@@ -43,22 +43,26 @@
                     <div class="w-100">     
                     
                     <% if (locals.userLogged) { %>
-                    <a  id="añadir" href= "/carrito" ><button class="boton-añadir  w-100 ">Añadir al carrito</button></a>
+                        <!-- Add to Cart Form -->
+                        <form action="/carrito/add/<%= product.id %>" method="POST" class="w-100">
+                            <div class="flex align-center justify-between mb-16">
+                                <label for="quantity" class="tx-negro">Cantidad:</label>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" class="form-control" style="width: 80px;">
+                            </div>
+                            <button type="submit" class="boton-añadir w-100">Añadir al carrito</button>
+                        </form>
+                        <a href="/carrito" class="block text-center mt-16 tx-negro">Ver carrito</a>
                     <% } else { %> 
-                    <a id="añadir" href= "/user/login" ><button class="boton-añadir  w-100 ">Añadir al carrito</button></a>
+                        <a id="añadir" href="/user/login"><button class="boton-añadir w-100">Añadir al carrito</button></a>
                     <% } %> 
 
                     <% if (locals.userLogged && userLogged.admin) { %> 
-                    <!--<button class="boton-añadir w-100 "><a href="/products/<%= product.id %>/edit">Editar</a></button>
-
-                    <form action="/products/<%= product.id %>?_method=DELETE" method="POST" >
-                        <button type="submit" class="boton-añadir w-100">Eliminar</button></form>-->
-                    <div class="flex">   
-                        <form action="/products/<%= product.id %>/edit " method="GET" class="w-50 pd-r-8">
-                            <button type="submit" class="boton-añadir w-100">Editar</button>
+                    <div class="btn-group-hampi mt-16">   
+                        <form action="/products/<%= product.id %>/edit" method="GET" class="w-50 pd-r-8">
+                            <button type="submit" class="btn-secondary-hampi w-100">Editar</button>
                         </form>
-                        <form action="/products/<%= product.id %>?_method=DELETE " method="POST" class="w-50 pd-l-8" id="boton-eliminar">
-                            <button type="submit" class="boton-añadir w-100 tx-white">Eliminar</button>
+                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST" class="w-50 pd-l-8" id="boton-eliminar">
+                            <button type="submit" class="btn-danger-hampi w-100">Eliminar</button>
                         </form>
                     </div> 
                     <% } %>
@@ -84,7 +88,7 @@
                 <p class="tx-12">Producto 1</p>
                 <p class="tx-12">$12.99</p>
                 <div>
-                  <button class=" boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
+                  <button class="boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
                 </div>
               </div>
             </article>
@@ -100,7 +104,7 @@
                 <p class="tx-12">Producto 2</p>
                 <p class="tx-12">$9.99</p>
                 <div>
-                  <button class=" boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
+                  <button class="boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
                 </div>
               </div>
             </article>
@@ -116,7 +120,7 @@
                 <p class="tx-12">Producto 3</p>
                 <p class="tx-12">$17.99</p>
                 <div>
-                  <button class=" boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
+                  <button class="boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
                 </div>
               </div>
             </article>
@@ -132,7 +136,7 @@
                 <p class="tx-12">Producto 4</p>
                 <p class="tx-12">$15.99</p>
                 <div>
-                  <button class=" boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
+                  <button class="boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
                 </div>
               </div>
             </article>

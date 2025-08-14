@@ -5,6 +5,30 @@
     <p class="margin-0">🌱 Anatomía de nuestros cuerpos - Alternativas para la salud 🌱</p>
   </div>
 
+  <style>
+    .cart-link {
+      position: relative;
+      color: inherit;
+      text-decoration: none;
+    }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      min-width: 18px;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .margin-right-16 {
+      margin-right: 16px;
+    }
+  </style>
+
 
   <nav id="main-nav" >
     <div id="header-shadow" class="w-100 flex pt-24">
@@ -40,8 +64,19 @@
     </a>
 
     <!--LOGIN LOGIN-->
-    <div class="w-20 py-24 ">
+    <div class="w-20 py-24 flex justify-end align-center">
         
+      <!-- Cart Icon (only show if logged in) -->
+      <% if (locals.isLogged) { %>
+        <a href="/carrito" class="cart-link margin-right-16" style="position: relative;">
+          <i class="fas fa-shopping-cart" style="font-size: 1.2rem;"></i>
+          <% if (locals.cartItemCount > 0) { %>
+            <span class="cart-badge"><%= locals.cartItemCount %></span>
+          <% } %>
+        </a>
+      <% } %>
+      
+      <!-- User menu -->
       <!-- si tengo locals.isLogged = false (porque asi esta en el MD), quiero mostrar la parte del "else" -->
       <!-- porque esta seteado en "false" -->
         <% if (locals.isLogged) { %>

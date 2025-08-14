@@ -1,20 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
 
 const cartController = require("../controllers/cartController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
-// Tu carrito
+// Show cart
 router.get("/", authMiddleware, cartController.list);
 
-// Si no tenes carrito crearlo, y agregar productos
-router.get("/:id", authMiddleware, cartController.add);
+// Add product to cart
+router.post("/add/:id", authMiddleware, cartController.add);
+router.get("/add/:id", authMiddleware, cartController.add);
 
-// Borrar producto del carrito
-//router.delete("/borrar/:id", authMiddleware, cartController.delete);
+// Update cart item quantity
+router.put("/update/:id", authMiddleware, cartController.update);
+router.post("/update/:id", authMiddleware, cartController.update);
 
-// Procesar cobro
-// router.put("/comprar", authMiddleware, cartController.shop);
+// Remove product from cart
+router.delete("/remove/:id", authMiddleware, cartController.remove);
+router.post("/remove/:id", authMiddleware, cartController.remove);
+
+// Process checkout
+router.post("/checkout", authMiddleware, cartController.checkout);
+router.put("/comprar", authMiddleware, cartController.checkout);
 
 module.exports = router;

@@ -9,37 +9,35 @@ import TopNavBar from "./TopBar";
 import CategoriesInDb from "./CategoriesInDb";
 
 export default function ContentWrapper() {
-    return (
-      <div id="content-wrapper " className="d-flex flex-column">
-        <div id="content bg-hampi">
-          <TopNavBar />
+  return (
+    <div id="content-wrapper" className="d-flex flex-column">
+      <div id="content" className="bg-hampi">
+        <TopNavBar />
 
-          <div className="container-fluid mt-5">
-            
+        <div className="container-fluid mt-5">
+          <ContentRowTop />
 
-            <ContentRowTop />
+          <div className="row">
+            <ContentCard title="List of products in Database">
+              <ProductsInDb />
+            </ContentCard>
 
-            <div className="row">
-              <ContentCard title="List of products in Database">
-                <ProductsInDb />
-              </ContentCard>
+            <ContentCard title="List of categories in Database">
+              <CategoriesInDb />
+            </ContentCard>
 
-              <ContentCard title="List of categories in Database">
-                <CategoriesInDb />
-              </ContentCard>
+            <LastProductInDb />
+          </div>
 
-              <LastProductInDb />
-            </div>
-
-            <div className="row mt-4">
-              <ContentCard title="List of users in Database">
-                <UsersInDb />
-              </ContentCard>
-            </div>
+          <div className="row mt-4">
+            <ContentCard title="List of users in Database">
+              <UsersInDb />
+            </ContentCard>
           </div>
         </div>
-
-        <Footer />
       </div>
-    );
+
+      <Footer />
+    </div>
+  );
 }

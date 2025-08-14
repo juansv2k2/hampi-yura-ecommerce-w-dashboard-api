@@ -35,7 +35,8 @@ const UsersInDb = () => {
   const [error, setError] = useState("");
 
   const handleInput = (e) => {
-    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setForm({ ...form, [e.target.name]: value });
   };
 
@@ -47,7 +48,7 @@ const UsersInDb = () => {
     e.preventDefault();
     setAdding(true);
     setError("");
-    
+
     try {
       const formData = new FormData();
       formData.append("fullName", form.fullName);
@@ -61,18 +62,18 @@ const UsersInDb = () => {
         method: "POST",
         body: formData,
       });
-      
+
       if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.error || "Error adding user");
       }
-      
-      setForm({ 
-        fullName: "", 
-        birthdate: "", 
-        email: "", 
-        password: "", 
-        admin: false 
+
+      setForm({
+        fullName: "",
+        birthdate: "",
+        email: "",
+        password: "",
+        admin: false,
       });
       setAvatar(null);
       fetchUsers();
@@ -88,9 +89,9 @@ const UsersInDb = () => {
       alert("No se puede eliminar el usuario administrador principal");
       return;
     }
-    
+
     if (!window.confirm("¿Eliminar este usuario?")) return;
-    
+
     try {
       const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
       if (!res.ok) {
@@ -213,10 +214,15 @@ const UsersInDb = () => {
                 <td>{user.id}</td>
                 <td>
                   {user.avatar && (
-                    <img 
+                    <img
                       src={`http://localhost:3000/images/avatars/${user.avatar}`}
                       alt="avatar"
-                      style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover" }}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                      }}
                     />
                   )}
                 </td>
@@ -224,7 +230,11 @@ const UsersInDb = () => {
                 <td>{user.email}</td>
                 <td>{user.birthdate}</td>
                 <td>
-                  <span className={`badge ${user.admin ? "bg-success" : "bg-secondary"}`}>
+                  <span
+                    className={`badge ${
+                      user.admin ? "bg-success" : "bg-secondary"
+                    }`}
+                  >
                     {user.admin ? "Sí" : "No"}
                   </span>
                 </td>
