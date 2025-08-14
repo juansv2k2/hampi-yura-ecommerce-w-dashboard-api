@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "fullName": "Admin",
+        "birthdate": "2021-10-12",
+        "email": "admin@hampiyura.com",
+        "password": "$2a$10$sPG1Hpzent0DOygDHEuu9u5G3FoCft6OXvR8684V4SFgQSIP3aREq",
+        "confirmPassword": "123456",
+        "avatar": "logo2.png",
+        "admin": 1
+    }
+]

@@ -1,34 +1,36 @@
-import React from 'react';
-import foto from '../assets/images/logo1.png';
+import React from "react";
 
-function TopBar(){
-    return (
-      <React.Fragment>
-        {/*<!-- Topbar -->*/}
-        <nav className="navbar navbar-expand navbar-light static-top ">
-          {/*<!-- Sidebar Toggle (Topbar) 
-          <button
-            id="sidebarToggleTop"
-            className="btn btn-link d-md-none rounded-circle mr-3"
-          >
-            <i className="fa fa-bars"></i>
-          </button>
-		  -->*/}
-
-          {/*<!-- Topbar Navbar -->*/}
-          <div className="text-center w-100 bg-hampi-crema">
-            <div className="w-100 p-5 ">
-              <img
-                className="img-profile rounded-circle"
-                src={foto}
-                alt="Hampi Yura - Administrador"
-                width="150px"
-              />
-            </div>
+function TopBar() {
+  return (
+    <React.Fragment>
+      {/*<!-- Enhanced Topbar with Natural Design -->*/}
+      <nav className="navbar navbar-expand navbar-light bg-hampi-natural shadow-natural mb-4 page-header hampi-accent">
+        <div className="container-fluid">
+          {/*<!-- Topbar Brand with Natural Styling -->*/}
+          <div className="navbar-brand">
+            <h1 className="h3 mb-0 page-title">
+              <i className="fas fa-seedling text-success mr-2 stats-icon"></i>
+              Hampi Yura Dashboard
+            </h1>
           </div>
-        </nav>
-        {/*<!-- End of Topbar -->*/}
-      </React.Fragment>
-    );
+
+          {/*<!-- Topbar Navbar with Enhanced Styling -->*/}
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <span className="nav-link d-flex align-items-center">
+                <div className="rounded-circle bg-gradient-natural p-2 shadow-natural">
+                  <i className="fas fa-user-circle fa-lg text-earth"></i>
+                </div>
+                <span className="ml-3 d-none d-lg-inline text-earth font-weight-bold">
+                  Panel de Administración
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      {/*<!-- End of Enhanced Topbar -->*/}
+    </React.Fragment>
+  );
 }
 export default TopBar;
