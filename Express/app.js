@@ -7,7 +7,10 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 
-const port = process.env.PORT || 3000;
+// Hardcoded ports
+const WEBSITE_PORT = 3000; // Main website and web app
+const API_PORT = 3001; // API endpoints (if split in future)
+const port = WEBSITE_PORT;
 
 // Initialize express app
 const app = express();
@@ -31,6 +34,7 @@ app.use(express.json());
 
 // Template Engine
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // Load products data function (for API endpoints)
 const loadProductsData = () => {
@@ -43,93 +47,6 @@ const loadProductsData = () => {
     return [];
   }
 };
-
-// =================== API ROUTES (for Dashboard) ===================
-
-// API Root endpoint
-app.get("/api", (req, res) => {
-  res.json({
-    message: "Hampi Yura Express API is running!",
-    version: "1.0.0",
-    endpoints: {
-      products: "/api/products",
-      categories: "/api/categories",
-      stats: "/api/stats",
-      latest: "/api/products/latest",
-    },
-  });
-});
-
-// Get all products (only active ones) - API
-app.get("/api/products", (req, res) => {
-  try {
-    const products = loadProductsData();
-    const activeProducts = products.filter((product) => !product.deleted);
-    res.json(activeProducts);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch products" });
-  }
-});
-
-// Get all categories - API
-app.get("/api/categories", (req, res) => {
-  try {
-    const products = loadProductsData();
-    const activeProducts = products.filter((product) => !product.deleted);
-    const categories = [
-      ...new Set(activeProducts.map((p) => p.category).filter(Boolean)),
-    ];
-
-    const categoriesWithCount = categories.map((name, index) => ({
-      id: index + 1,
-      name,
-      productCount: activeProducts.filter((p) => p.category === name).length,
-    }));
-
-    res.json(categoriesWithCount);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch categories" });
-  }
-});
-
-// Get dashboard statistics - API
-app.get("/api/stats", (req, res) => {
-  try {
-    const products = loadProductsData();
-    const activeProducts = products.filter((product) => !product.deleted);
-    const categories = [
-      ...new Set(activeProducts.map((p) => p.category).filter(Boolean)),
-    ];
-
-    const stats = {
-      totalProducts: activeProducts.length,
-      totalCategories: categories.length,
-      totalUsers: 2, // From SQL file data
-      totalRevenue: activeProducts.reduce((sum, p) => sum + (p.price || 0), 0),
-    };
-
-    res.json(stats);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch statistics" });
-  }
-});
-
-// Get latest product - API
-app.get("/api/products/latest", (req, res) => {
-  try {
-    const products = loadProductsData();
-    const activeProducts = products.filter((product) => !product.deleted);
-    const latestProduct = activeProducts.sort((a, b) => b.id - a.id)[0];
-
-    if (latestProduct) {
-      res.json(latestProduct);
-    } else {
-      res.status(404).json({ error: "No products found" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch latest product" });
-  }
-});
 
 // =================== WEB APPLICATION ROUTES ===================
 
@@ -156,8 +73,11 @@ app.use((req, res, next) => {
 
 // Server listening
 app.listen(port, () => {
-  console.log(`🚀 Hampi Yura Server running on port ${port}`);
-  console.log(`📱 Web App: http://localhost:${port}`);
-  console.log(`🔗 API Docs: http://localhost:${port}/api`);
-  console.log(`📊 Dashboard API available at http://localhost:${port}/api/*`);
+  console.log(`🚀 Hampi Yura Server running on port ${WEBSITE_PORT}`);
+  console.log(`📱 Web App: http://localhost:${WEBSITE_PORT}`);
+  console.log(`🔗 API Docs: http://localhost:${WEBSITE_PORT}/api`);
+  console.log(
+    `📊 Dashboard API available at http://localhost:${WEBSITE_PORT}/api/*`
+  );
+  // If you want to run the API on a separate port, use API_PORT
 });

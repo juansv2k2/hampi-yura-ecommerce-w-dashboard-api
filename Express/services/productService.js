@@ -5,10 +5,20 @@ const productsFilePath = path.join(
   __dirname,
   "../database/productsDataBase.json"
 );
-const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
 const productService = {
+  // Load products fresh from file each time
+  loadProducts() {
+    try {
+      return JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    } catch (error) {
+      console.error("Error loading products:", error);
+      return [];
+    }
+  },
+
   findAll() {
+    const products = this.loadProducts();
     const filteredProducts = products.filter((product) => {
       return !product.deleted;
     });
@@ -23,6 +33,7 @@ const productService = {
   },
 
   findByPk(id) {
+    const products = this.loadProducts();
     const product = products.find((product) => {
       return product.id == id;
     });
@@ -30,6 +41,7 @@ const productService = {
   },
 
   create(payload, image) {
+    const products = this.loadProducts();
     const lastProduct = products[products.length - 1];
     const biggestProductId = products.length > 0 ? lastProduct.id : 1;
     const product = {
@@ -40,27 +52,33 @@ const productService = {
       deleted: false,
     };
     products.push(product);
-    this.save();
+    this.save(products);
   },
 
   editOne(id, payload, image) {
-    const product = this.findOneById(id);
-    product.name = payload.name;
-    product.price = Number(payload.price);
-    product.discount = Number(payload.discount);
-    product.category = payload.category;
-    product.description = payload.description;
-    product.image = image ? image.filename : product.image;
-    product.image = payload.destacado;
-    this.save();
-  },
-  destroyOne(id) {
-    const product = this.findOneById(id);
-    product.deleted = true;
-    this.save();
+    const products = this.loadProducts();
+    const product = products.find((p) => p.id == id);
+    if (product) {
+      product.name = payload.name;
+      product.price = Number(payload.price);
+      product.discount = Number(payload.discount);
+      product.category = payload.category;
+      product.description = payload.description;
+      product.image = image ? image.filename : product.image;
+      this.save(products);
+    }
   },
 
-  save() {
+  destroyOne(id) {
+    const products = this.loadProducts();
+    const product = products.find((p) => p.id == id);
+    if (product) {
+      product.deleted = true;
+      this.save(products);
+    }
+  },
+
+  save(products) {
     const jsonString = JSON.stringify(products, null, 4);
     fs.writeFileSync(productsFilePath, jsonString);
   },
