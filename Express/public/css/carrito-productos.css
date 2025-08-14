@@ -488,8 +488,10 @@
     flex-direction: column;
   }
 
-  .prod-detail .w-100 {
+  .prod-detail .w-100,
+  .prod-detail .tx-medicine.w-100 {
     width: 100% !important;
+    flex: none;
   }
 
   .px-48 {
@@ -518,6 +520,42 @@
   .p-cart {
     width: 100px;
   }
+
+  /* Adjust product detail container on mobile */
+  .detalle-producto {
+    margin: 16px;
+    padding: 24px;
+    max-width: none;
+  }
+}
+
+/* Mobile fixes for product pages and carousel */
+@media (max-width: 600px) {
+  /* Adjust product detail layout: stack columns on small screens */
+  .prod-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Carousel container: ensure horizontal scrolling without overlapping */
+  .contenedor-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Each carousel item: prevent shrinking and add spacing */
+  .contenedor-scroll > div {
+    flex: 0 0 auto;
+    margin-right: 8px;
+  }
+
+  /* Optional: Adjust product images in carousel */
+  .contenedor-scroll img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Image responsiveness */
@@ -532,4 +570,36 @@
 .form-control {
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Desktop layout fixes for product pages */
+.detalle-producto {
+  margin: 30px auto;
+  max-width: 900px; /* Reduced from 1200px for better proportions */
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+  border-bottom: none;
+}
+
+.prod-detail {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Override w-100 in product detail for better proportions */
+.prod-detail .tx-medicine.w-100 {
+  width: 100% !important;
+  flex: 0 0 100%;
+}
+
+/* Ensure image doesn't exceed container */
+.prod-detail .tx-medicine img {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
 }

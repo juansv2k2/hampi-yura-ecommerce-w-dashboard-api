@@ -1,17 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Acá va el head-->
-    <%- include ("./partials/head.ejs") %>
+  <!--Acá va el head-->
+  <%- include ("./partials/head.ejs") %>
 
-    <body class="body">
-        <!--Acá va el header-->
-        <%- include ("./partials/header.ejs") %>
+  <body class="body">
+    <!--Acá va el header-->
+    <%- include ("./partials/header.ejs") %>
 
     <main id="main-content">
-      <p>Aquí irá la info sobre fitoterapia</p>
+      <!-- Hero Section -->
+      <section class="padding-24 margin-top-48">
+        <div class="content-medicine">
+          <div class="tx-medicine">
+            <img
+              src="/images/filosofia.png"
+              alt="Fitoterapia - Plantas Medicinales"
+              class="img-medicina border-8"
+            />
+          </div>
+          <div class="tx-medicine filo-wrapper">
+            <h1 class="filohampi margin-0">¿Qué es la Fitoterapia?</h1>
+            <p class="py-24">
+              La <strong>fitoterapia</strong> es una práctica milenaria que
+              utiliza plantas medicinales y sus extractos para promover la salud
+              y tratar diversas dolencias de forma natural. En Hampi Yura,
+              creemos en el poder curativo de la naturaleza y en la sabiduría
+              ancestral que nos enseña a vivir en armonía con nuestro entorno.
+            </p>
+            <p>
+              Nuestros productos están formulados con ingredientes botánicos
+              cuidadosamente seleccionados, combinando conocimientos
+              tradicionales con estándares modernos de calidad y seguridad.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits Section -->
+      <section class="padding-24 bg-cuidadopiel-claro">
+        <h2 class="text-center filohampi margin-bottom-24">
+          Beneficios de la Fitoterapia
+        </h2>
+        <div class="secciones">
+          <div class="valores w-30">
+            <div class="text-center">
+              <i class="fa fa-leaf fa-2x tx-verde margin-bottom-16"></i>
+              <h3 class="tx-negro">Origen Natural</h3>
+              <p class="tx-12">
+                Los principios activos provienen directamente de plantas, sin
+                químicos sintéticos agresivos para tu organismo.
+              </p>
+            </div>
+          </div>
+          <div class="valores w-30">
+            <div class="text-center">
+              <i class="fa fa-heart fa-2x tx-rojo margin-bottom-16"></i>
+              <h3 class="tx-negro">Cuidado Integral</h3>
+              <p class="tx-12">
+                Trata no solo los síntomas sino que busca el equilibrio general
+                del organismo y el bienestar holístico.
+              </p>
+            </div>
+          </div>
+          <div class="valores w-30">
+            <div class="text-center">
+              <i class="fa fa-clock fa-2x tx-azul margin-bottom-16"></i>
+              <h3 class="tx-negro">Sabiduría Ancestral</h3>
+              <p class="tx-12">
+                Basada en miles de años de experiencia y conocimiento
+                tradicional validado por la ciencia moderna.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Plant Categories Section -->
+      <section class="padding-24">
+        <h2 class="text-center filohampi margin-bottom-24">
+          Principales Categorías de Plantas Medicinales
+        </h2>
+
+        <div class="contenedor-scroll margin-bottom-48">
+          <div class="padding-16 selec-wrapper-50 selec-wrapper-25">
+            <article class="box box-shadow">
+              <img
+                src="/images/background/bg-natural.png"
+                alt="Plantas Digestivas"
+                class="img-dest"
+              />
+              <div class="padding-8">
+                <h4 class="tx-negro margin-0">Digestivas</h4>
+                <p class="tx-12 py-8">
+                  Manzanilla, jengibre, hinojo. Ayudan a mejorar la digestión y
+                  aliviar molestias estomacales.
+                </p>
+                <div class="margin-top-16">
+                  <span class="badge bg-verde tx-blanco">Digestión</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="padding-16 selec-wrapper-50 selec-wrapper-25">
+            <article class="box box-shadow">
+              <img
+                src="/images/background/bg-natural.png"
+                alt="Plantas Relajantes"
+                class="img-dest"
+              />
+              <div class="padding-8">
+                <h4 class="tx-negro margin-0">Relajantes</h4>
+                <p class="tx-12 py-8">
+                  Lavanda, valeriana, pasiflora. Promueven la relajación y
+                  ayudan a combatir el estrés.
+                </p>
+                <div class="margin-top-16">
+                  <span class="badge bg-violeta tx-blanco">Relajación</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="padding-16 selec-wrapper-50 selec-wrapper-25">
+            <article class="box box-shadow">
+              <img
+                src="/images/background/bg-natural.png"
+                alt="Plantas Energizantes"
+                class="img-dest"
+              />
+              <div class="padding-8">
+                <h4 class="tx-negro margin-0">Energizantes</h4>
+                <p class="tx-12 py-8">
+                  Ginseng, guaraná, té verde. Proporcionan energía natural y
+                  mejoran la concentración.
+                </p>
+                <div class="margin-top-16">
+                  <span class="badge bg-naranja tx-blanco">Energía</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="padding-16 selec-wrapper-50 selec-wrapper-25">
+            <article class="box box-shadow">
+              <img
+                src="/images/background/bg-natural.png"
+                alt="Plantas Purificantes"
+                class="img-dest"
+              />
+              <div class="padding-8">
+                <h4 class="tx-negro margin-0">Purificantes</h4>
+                <p class="tx-12 py-8">
+                  Diente de león, ortiga, té rojo. Ayudan a depurar el organismo
+                  y eliminar toxinas.
+                </p>
+                <div class="margin-top-16">
+                  <span class="badge bg-azul tx-blanco">Detox</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage Guidelines Section -->
+      <section class="padding-24 bg-gris-claro">
+        <div class="content-medicine">
+          <div class="tx-medicine filo-wrapper">
+            <h2 class="filohampi margin-0">
+              Cómo Usar la Fitoterapia de Forma Segura
+            </h2>
+            <ul class="py-24">
+              <li class="margin-bottom-16">
+                <strong>Consulta profesional:</strong> Siempre consulta con un
+                profesional de la salud antes de iniciar cualquier tratamiento
+                fitoterapéutico.
+              </li>
+              <li class="margin-bottom-16">
+                <strong>Calidad garantizada:</strong> Utiliza productos de
+                fuentes confiables como Hampi Yura, que garantizan pureza y
+                potencia.
+              </li>
+              <li class="margin-bottom-16">
+                <strong>Dosificación adecuada:</strong> Respeta las dosis
+                recomendadas; más no siempre es mejor.
+              </li>
+              <li class="margin-bottom-16">
+                <strong>Interacciones:</strong> Informa a tu médico sobre
+                cualquier planta medicinal que estés tomando.
+              </li>
+              <li class="margin-bottom-16">
+                <strong>Paciencia:</strong> Los efectos de la fitoterapia suelen
+                ser graduales pero duraderos.
+              </li>
+            </ul>
+            <a href="/products" class="boton-filo tx-blanco"
+              >Explorar Productos Naturales</a
+            >
+          </div>
+          <div class="tx-medicine">
+            <img
+              src="/images/background/bg-natural.png"
+              alt="Uso Seguro de Plantas Medicinales"
+              class="img-medicina border-8"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Scientific Evidence Section -->
+      <section class="padding-24">
+        <h2 class="text-center filohampi margin-bottom-24">
+          Fitoterapia y Ciencia Moderna
+        </h2>
+        <div class="w-80 margin-auto">
+          <p class="text-center py-24">
+            La investigación científica moderna ha validado muchos de los usos
+            tradicionales de las plantas medicinales. Estudios clínicos han
+            demostrado la eficacia de diversos compuestos vegetales en el
+            tratamiento de condiciones como:
+          </p>
+          <div class="flex justify-center margin-bottom-24">
+            <div class="w-50 padding-16">
+              <ul>
+                <li>✓ Ansiedad y estrés (lavanda, valeriana)</li>
+                <li>✓ Problemas digestivos (jengibre, menta)</li>
+                <li>✓ Inflamación (cúrcuma, sauce blanco)</li>
+                <li>✓ Insomnio (pasiflora, melisa)</li>
+              </ul>
+            </div>
+            <div class="w-50 padding-16">
+              <ul>
+                <li>✓ Inmunidad (equinácea, propóleo)</li>
+                <li>✓ Circulación (ginkgo biloba, castaño de indias)</li>
+                <li>✓ Memoria y concentración (ginseng, gotu kola)</li>
+                <li>✓ Cuidado de la piel (aloe vera, caléndula)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+
+      <section class="bg-cuidadopiel padding-48 text-center">
+        <h2 class="filohampi tx-blanco margin-bottom-24">
+          Comienza tu Viaje Natural con Hampi Yura
+        </h2>
+        <p class="margin-bottom-32 w-70 margin-auto tx-16">
+          Descubre el poder de la naturaleza a través de nuestros productos
+          cuidadosamente formulados. Cada producto Hampi Yura combina la
+          sabiduría ancestral con los más altos estándares de calidad moderna.
+        </p>
+        <div class="flex justify-center">
+          <a href="/products" class="btn-primary-hampi margin-right-16"
+            >Conocer Productos</a
+          >
+          <a href="/fitoterapia" class="btn-secondary-hampi"
+            >Aprender sobre Fitoterapia</a
+          >
+        </div>
+      </section>
     </main>
 
-        <!--Acá va el footer-->
-        <%- include ("./partials/footer.ejs") %>
-    </body>
+    <!--Acá va el footer-->
+    <%- include ("./partials/footer.ejs") %>
+  </body>
 </html>

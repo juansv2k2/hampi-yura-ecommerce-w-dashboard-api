@@ -58,10 +58,10 @@
 
                     <% if (locals.userLogged && userLogged.admin) { %> 
                     <div class="btn-group-hampi mt-16">   
-                        <form action="/products/<%= product.id %>/edit" method="GET" class="w-50 pd-r-8">
+                        <form action="/products/<%= product.id %>/edit" method="GET" class="w-50">
                             <button type="submit" class="btn-secondary-hampi w-100">Editar</button>
                         </form>
-                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST" class="w-50 pd-l-8" id="boton-eliminar">
+                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST" class="w-50" id="boton-eliminar">
                             <button type="submit" class="btn-danger-hampi w-100">Eliminar</button>
                         </form>
                     </div> 
@@ -136,7 +136,7 @@
                 <p class="tx-12">Producto 4</p>
                 <p class="tx-12">$15.99</p>
                 <div>
-                  <button class="boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
+                  <button class=" boton-agregar tx-blanco bg-cuidadopiel-oscuro border-button w-100">Agregar</button>
                 </div>
               </div>
             </article>

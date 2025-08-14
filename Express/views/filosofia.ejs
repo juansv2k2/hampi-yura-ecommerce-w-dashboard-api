@@ -1,31 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Acá va el head-->
-    <%- include ("./partials/head.ejs") %>
+  <!--Acá va el head-->
+  <%- include ("./partials/head.ejs") %>
 
-    <body class="body">
-        <!--Acá va el header-->
-        <%- include ("./partials/header.ejs") %>
+  <body class="body">
+    <!--Acá va el header-->
+    <%- include ("./partials/header.ejs") %>
 
-        <main id="main-content">
-            <section>
-                <div class="flex bg-img-filo" style= "max-height:800px">                 
-                        <div class="bg-cuidadopiel-claro padding-16 w-70 margin-filo">
-                            <h2 class="text-center">Filosofía Hampi</h2>
-                            <p class="filohampi">
-                            Hampi Yura significa "Planta Medicinal" en Quechua. </br></br>
-                            Este proyecto nace con la idea de poder devolverle a este mundo una forma sana de reencontrarnos con nuestras memorias
-                            ancestrales a través de las plantas medicinales que la Pachamama nos regala. </br>                
-                            </p>
-                        </div>                                         
-                </div>
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section>
+        <div class="flex bg-img-filo" style="max-height: 800px">
+          <div
+            class="bg-cuidadopiel-claro padding-24 w-70 margin-filo border-8"
+          >
+            <h1 class="text-center filohampi margin-bottom-24">
+              Filosofía Hampi Yura
+            </h1>
+            <p class="filohampi text-center margin-bottom-16">
+              <em>"Hampi Yura significa 'Planta Medicinal' en Quechua"</em>
+            </p>
+            <p class="py-16">
+              Este proyecto nace con la idea de poder devolverle a este mundo
+              una forma sana de reencontrarnos con nuestras memorias ancestrales
+              a través de las plantas medicinales que la Pachamama nos regala.
+            </p>
+            <p>
+              Creemos en la sabiduría milenaria de nuestros ancestros y en el
+              poder sanador de la naturaleza, combinando conocimientos
+              tradicionales con la ciencia moderna para ofrecer productos que
+              nutren tanto el cuerpo como el alma.
+            </p>
+          </div>
+        </div>
+      </section>
 
-                
-            </section>
-            
-        </main>
+      <!-- Our Values Section -->
+      <section class="padding-48">
+        <h2 class="text-center filohampi margin-bottom-48">
+          Nuestros Valores Fundamentales
+        </h2>
+        <div class="secciones">
+          <div class="valores w-30">
+            <div class="text-center">
+              <i
+                class="fa fa-globe-americas fa-3x tx-verde margin-bottom-24"
+              ></i>
+              <h3 class="filohampi">Respeto por la Pachamama</h3>
+              <p class="tx-14 py-16">
+                Honramos a la Madre Tierra como fuente de vida y sanación. Cada
+                producto es elaborado con profundo respeto por los recursos
+                naturales y los ciclos de la naturaleza.
+              </p>
+            </div>
+          </div>
+          <div class="valores w-30">
+            <div class="text-center">
+              <i class="fa fa-pagelines fa-3x tx-verde margin-bottom-24"></i>
+              <h3 class="filohampi">Sabiduría Ancestral</h3>
+              <p class="tx-14 py-16">
+                Preservamos y transmitimos el conocimiento tradicional de
+                nuestros ancestros, reconociendo que la medicina natural ha
+                sanado a la humanidad durante milenios.
+              </p>
+            </div>
+          </div>
+          <div class="valores w-30">
+            <div class="text-center">
+              <i class="fa fa-heart fa-3x tx-rojo margin-bottom-24"></i>
+              <h3 class="filohampi">Bienestar Holístico</h3>
+              <p class="tx-14 py-16">
+                Creemos en el equilibrio entre mente, cuerpo y espíritu.
+                Nuestros productos buscan no solo tratar síntomas, sino promover
+                el bienestar integral de cada persona.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <!--Acá va el footer-->
-        <%- include ("./partials/footer.ejs") %>
-    </body>
+      <!-- Mission and Vision Section -->
+      <section class="bg-cuidadopiel-claro padding-48">
+        <div class="content-medicine">
+          <div class="tx-medicine filo-wrapper">
+            <h2 class="filohampi margin-0">Nuestra Misión</h2>
+            <p class="py-24 tx-16">
+              Reconectar a las personas con la sabiduría ancestral de las
+              plantas medicinales, ofreciendo productos naturales de la más alta
+              calidad que promuevan la salud integral y el bienestar sostenible.
+            </p>
+            <p class="tx-16">
+              Trabajamos día a día para ser un puente entre el conocimiento
+              tradicional y las necesidades modernas, respetando tanto a la
+              naturaleza como a nuestros clientes.
+            </p>
+          </div>
+          <div class="tx-medicine">
+            <div class="bg-cuidadopiel padding-24 border-8">
+              <h2 class="filohampi tx-blanco margin-0 text-center">
+                Nuestra Visión
+              </h2>
+              <p class="py-24 tx-blanco text-center tx-16">
+                Ser la marca líder en productos naturales que inspire a una
+                nueva generación a vivir en armonía con la naturaleza,
+                recuperando la conexión perdida con las plantas sagradas y sus
+                poderes curativos.
+              </p>
+              <p class="tx-blanco text-center tx-16">
+                Soñamos con un mundo donde cada persona tenga acceso a
+                alternativas naturales para su bienestar, promoviendo un estilo
+                de vida consciente y sostenible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Commitment Section -->
+      <section class="padding-48">
+        <h2 class="text-center filohampi margin-bottom-48">
+          Nuestro Compromiso
+        </h2>
+        <div class="flex justify-center">
+          <div class="w-80">
+            <div class="content-medicine margin-bottom-32">
+              <div class="tx-medicine">
+                <i class="fa fa-leaf fa-2x tx-verde"></i>
+                <h3 class="filohampi margin-top-16">Sostenibilidad</h3>
+                <p class="py-16">
+                  Nos comprometemos con prácticas sostenibles en toda nuestra
+                  cadena de producción. Desde la recolección responsable hasta
+                  empaques eco-amigables, cada decisión considera el impacto en
+                  nuestro planeta.
+                </p>
+              </div>
+              <div class="tx-medicine">
+                <i class="fa fa-users fa-2x tx-azul"></i>
+                <h3 class="filohampi margin-top-16">Comunidad</h3>
+                <p class="py-16">
+                  Trabajamos directamente con comunidades locales y pueblos
+                  originarios, asegurando que reciban beneficios justos por
+                  compartir su conocimiento ancestral y recursos naturales.
+                </p>
+              </div>
+            </div>
+            <div class="content-medicine">
+              <div class="tx-medicine">
+                <i class="fa fa-star fa-2x tx-naranja"></i>
+                <h3 class="filohampi margin-top-16">Calidad</h3>
+                <p class="py-16">
+                  Cada producto pasa por rigurosos controles de calidad.
+                  Utilizamos métodos científicos modernos para validar la
+                  pureza, potencia y seguridad de nuestros ingredientes
+                  naturales.
+                </p>
+              </div>
+              <div class="tx-medicine">
+                <i class="fa fa-graduation-cap fa-2x tx-violeta"></i>
+                <h3 class="filohampi margin-top-16">Educación</h3>
+                <p class="py-16">
+                  Creemos en el poder de la educación. Compartimos conocimiento
+                  sobre el uso responsable de plantas medicinales y promovemos
+                  una cultura de bienestar natural basada en evidencia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Story Section -->
+      <section class="bg-gris-claro padding-48">
+        <div class="w-80 margin-auto">
+          <h2 class="text-center filohampi margin-bottom-48">
+            Nuestra Historia
+          </h2>
+          <div class="text-center">
+            <p class="py-16 tx-16">
+              Hampi Yura nació del encuentro entre la medicina tradicional
+              andina y la búsqueda moderna de alternativas naturales para el
+              bienestar. Inspirados por los curanderos y sabios de los Andes,
+              quienes durante siglos han utilizado las plantas como medicina,
+              decidimos crear un puente hacia este conocimiento ancestral.
+            </p>
+            <p class="py-16 tx-16">
+              Cada producto en nuestra línea cuenta una historia: la del chamán
+              que nos enseñó sobre las propiedades de una hierba específica, la
+              de la abuela que nos compartió su receta familiar, o la del
+              investigador que validó científicamente un uso tradicional.
+            </p>
+            <p class="py-16 tx-16">
+              Hoy, Hampi Yura es más que una marca; es un movimiento hacia la
+              reconexión con nuestras raíces naturales, hacia un futuro donde la
+              sabiduría ancestral y la ciencia moderna trabajen juntas por el
+              bienestar de todos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Philosophy in Practice Section -->
+      <section class="padding-48">
+        <h2 class="text-center filohampi margin-bottom-48">
+          Filosofía en Acción
+        </h2>
+        <div class="secciones">
+          <div class="valores">
+            <div class="bg-blanco padding-24 border-8 box-shadow margin-16">
+              <h3 class="filohampi text-center">En Nuestros Productos</h3>
+              <ul class="py-16">
+                <li class="margin-bottom-8">
+                  ✓ Ingredientes 100% naturales y orgánicos
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Formulaciones basadas en conocimiento ancestral
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Validación científica de eficacia y seguridad
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Empaques biodegradables y sostenibles
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Trazabilidad completa desde origen hasta consumidor
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="valores w-50">
+            <div class="bg-blanco padding-24 border-8 box-shadow margin-16">
+              <h3 class="filohampi text-center">En Nuestra Comunidad</h3>
+              <ul class="py-16">
+                <li class="margin-bottom-8">
+                  ✓ Educación sobre uso responsable de plantas
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Apoyo a comunidades productoras locales
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Preservación de conocimientos tradicionales
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Promoción de estilos de vida saludables
+                </li>
+                <li class="margin-bottom-8">
+                  ✓ Investigación colaborativa universidad-comunidad
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="bg-cuidadopiel padding-48 text-center">
+        <h2 class="filohampi tx-blanco margin-bottom-24">
+          Únete a Nuestra Filosofía
+        </h2>
+        <p class="margin-bottom-32 w-70 margin-auto tx-16">
+          Te invitamos a ser parte de esta revolución natural. Descubre cómo
+          nuestros productos pueden ayudarte a reconectar con la sabiduría
+          ancestral y encontrar tu propio camino hacia el bienestar integral.
+        </p>
+        <div class="flex justify-center">
+          <a href="/products" class="btn-primary-hampi margin-right-16"
+            >Conocer Productos</a
+          >
+          <a href="/fitoterapia" class="btn-secondary-hampi"
+            >Aprender sobre Fitoterapia</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!--Acá va el footer-->
+    <%- include ("./partials/footer.ejs") %>
+  </body>
 </html>

@@ -1,17 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!--Acá va el head-->
-    <%- include ("./partials/head.ejs") %>
+  <!--Acá va el head-->
+  <%- include ("./partials/head.ejs") %>
 
-    <body class="body">
-        <!--Acá va el header-->
-        <%- include ("./partials/header.ejs") %>
+  <body class="body">
+    <!--Acá va el header-->
+    <%- include ("./partials/header.ejs") %>
 
-        <main id="main-content">
-            <p>Aquí irán los datos de contacto</p>
-        </main>
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section class="padding-24 margin-top-48">
+        <div class="text-center margin-bottom-48">
+          <h1 class="filohampi margin-bottom-16">Contáctanos</h1>
+          <p class="tx-16 w-70 margin-auto">
+            Estamos aquí para acompañarte en tu camino hacia el bienestar
+            natural. Nuestro equipo de expertos está listo para responder tus
+            consultas sobre nuestros productos y el uso de plantas medicinales.
+          </p>
+        </div>
+      </section>
 
-        <!--Acá va el footer-->
-        <%- include ("./partials/footer.ejs") %>
-    </body>
+      <!-- Contact Information Section -->
+      <section class="padding-24">
+        <div class="secciones margin-bottom-48">
+          <!-- Phone Contact -->
+          <div class="valores w-30">
+            <div class="text-center bg-blanco padding-24 border-8 box-shadow">
+              <i class="fa fa-phone fa-3x tx-verde margin-bottom-24"></i>
+              <h3 class="filohampi">Teléfono</h3>
+              <p class="py-16">
+                <strong>Línea Principal:</strong><br />
+                +54 11 4567-8900<br /><br />
+                <strong>WhatsApp:</strong><br />
+                +54 9 11 4567-8901
+              </p>
+              <p class="tx-12 tx-gris">
+                Lunes a Viernes: 9:00 - 18:00<br />
+                Sábados: 9:00 - 14:00
+              </p>
+            </div>
+          </div>
+
+          <!-- Email Contact -->
+          <div class="valores w-30">
+            <div class="text-center bg-blanco padding-24 border-8 box-shadow">
+              <i class="fa fa-envelope fa-3x tx-azul margin-bottom-24"></i>
+              <h3 class="filohampi">Email</h3>
+              <p class="py-16">
+                <strong>Consultas Generales:</strong><br />
+                info@hampiyura.com<br /><br />
+                <strong>Soporte Técnico:</strong><br />
+                soporte@hampiyura.com<br /><br />
+                <strong>Ventas:</strong><br />
+                ventas@hampiyura.com
+              </p>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="valores w-30">
+            <div class="text-center bg-blanco padding-24 border-8 box-shadow">
+              <i
+                class="fa fa-map-marker-alt fa-3x tx-rojo margin-bottom-24"
+              ></i>
+              <h3 class="filohampi">Ubicación</h3>
+              <p class="py-16">
+                <strong>Tienda Principal:</strong><br />
+                Av. Corrientes 1234<br />
+                C1043AAZ Ciudad Autónoma<br />
+                de Buenos Aires, Argentina<br /><br />
+                <strong>Centro de Distribución:</strong><br />
+                Zona Norte, San Isidro
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section class="bg-cuidadopiel-claro padding-48">
+        <div class="w-80 margin-auto">
+          <h2 class="text-center filohampi margin-bottom-32">
+            Envíanos un Mensaje
+          </h2>
+          <div class="content-medicine">
+            <!-- Contact Form -->
+            <div class="tx-medicine">
+              <form
+                action="/contacto"
+                method="POST"
+                class="bg-blanco padding-24 border-8"
+              >
+                <div class="margin-bottom-24">
+                  <label
+                    for="nombre"
+                    class="block margin-bottom-8 font-weight-bold"
+                    >Nombre Completo *</label
+                  >
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    required
+                    class="form-control w-100 padding-8 border-1 border-8"
+                    placeholder="Tu nombre completo"
+                  />
+                </div>
+
+                <div class="margin-bottom-24">
+                  <label
+                    for="email"
+                    class="block margin-bottom-8 font-weight-bold"
+                    >Email *</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="form-control w-100 padding-8 border-1 border-8"
+                    placeholder="tu@email.com"
+                  />
+                </div>
+
+                <div class="margin-bottom-24">
+                  <label
+                    for="telefono"
+                    class="block margin-bottom-8 font-weight-bold"
+                    >Teléfono</label
+                  >
+                  <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    class="form-control w-100 padding-8 border-1 border-8"
+                    placeholder="+54 11 1234-5678"
+                  />
+                </div>
+
+                <div class="margin-bottom-24">
+                  <label
+                    for="asunto"
+                    class="block margin-bottom-8 font-weight-bold"
+                    >Asunto *</label
+                  >
+                  <select
+                    id="asunto"
+                    name="asunto"
+                    required
+                    class="form-control w-100 padding-8 border-1 border-8"
+                  >
+                    <option value="">Selecciona un tema</option>
+                    <option value="consulta-producto">
+                      Consulta sobre productos
+                    </option>
+                    <option value="fitoterapia">
+                      Información sobre fitoterapia
+                    </option>
+                    <option value="pedido">Estado de mi pedido</option>
+                    <option value="devolucion">Devoluciones y cambios</option>
+                    <option value="mayorista">Ventas mayoristas</option>
+                    <option value="otro">Otro tema</option>
+                  </select>
+                </div>
+
+                <div class="margin-bottom-24">
+                  <label
+                    for="mensaje"
+                    class="block margin-bottom-8 font-weight-bold"
+                    >Mensaje *</label
+                  >
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    required
+                    rows="6"
+                    class="form-control w-100 padding-8 border-1 border-8"
+                    placeholder="Escribe tu consulta aquí. Si es sobre un producto específico, por favor menciona su nombre."
+                  ></textarea>
+                </div>
+
+                <div class="margin-bottom-24">
+                  <label class="flex align-center">
+                    <input
+                      type="checkbox"
+                      name="newsletter"
+                      class="margin-right-8"
+                    />
+                    <span class="tx-12"
+                      >Deseo recibir información sobre nuevos productos y
+                      promociones</span
+                    >
+                  </label>
+                </div>
+
+                <button type="submit" class="boton-añadir w-100">
+                  Enviar Mensaje
+                </button>
+              </form>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="tx-medicine padding-24">
+              <h3 class="filohampi margin-bottom-24">
+                ¿Necesitas Ayuda Inmediata?
+              </h3>
+
+              <div class="margin-bottom-24">
+                <h4 class="tx-negro margin-bottom-8">
+                  🌿 Consultas sobre Fitoterapia
+                </h4>
+                <p class="tx-14">
+                  Nuestros especialistas en plantas medicinales están
+                  disponibles para orientarte sobre el uso adecuado de nuestros
+                  productos. Programa una consulta gratuita.
+                </p>
+              </div>
+
+              <div class="margin-bottom-24">
+                <h4 class="tx-negro margin-bottom-8">
+                  📦 Seguimiento de Pedidos
+                </h4>
+                <p class="tx-14">
+                  Si ya realizaste una compra, puedes rastrear tu pedido
+                  ingresando a tu cuenta o contactándonos directamente con tu
+                  número de orden.
+                </p>
+              </div>
+
+              <div class="margin-bottom-24">
+                <h4 class="tx-negro margin-bottom-8">🔄 Devoluciones</h4>
+                <p class="tx-14">
+                  Tenemos una política de devolución flexible. Si no estás
+                  satisfecho con tu compra, contáctanos dentro de los 30 días
+                  posteriores a la recepción.
+                </p>
+              </div>
+
+              <div class="margin-bottom-24">
+                <h4 class="tx-negro margin-bottom-8">🏪 Ventas Mayoristas</h4>
+                <p class="tx-14">
+                  ¿Tienes una tienda naturista o farmacia? Ofrecemos condiciones
+                  especiales para distribuidores. Contacta a nuestro equipo
+                  comercial.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hours and Social Media -->
+      <section class="padding-48">
+        <div class="content-medicine">
+          <div class="tx-medicine padding-16">
+            <div class="bg-blanco padding-24 border-8 box-shadow">
+              <h3 class="filohampi text-center margin-bottom-24">
+                Horarios de Atención
+              </h3>
+              <div class="text-center">
+                <p class="margin-bottom-16">
+                  <strong>Lunes a Viernes:</strong> 9:00 - 18:00<br />
+                  <strong>Sábados:</strong> 9:00 - 14:00<br />
+                  <strong>Domingos:</strong> Cerrado
+                </p>
+                <p class="tx-12 tx-gris">
+                  *Horarios pueden variar durante feriados nacionales
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="tx-medicine padding-16">
+            <div class="bg-blanco padding-24 border-8 box-shadow">
+              <h3 class="filohampi text-center margin-bottom-24">
+                Síguenos en Redes
+              </h3>
+              <div class="text-center">
+                <a href="#" class="margin-right-16">
+                  <i class="fab fa-instagram fa-2x tx-rosa"></i>
+                </a>
+                <a href="#" class="margin-right-16">
+                  <i class="fab fa-facebook fa-2x tx-azul"></i>
+                </a>
+                <a href="#" class="margin-right-16">
+                  <i class="fab fa-whatsapp fa-2x tx-verde"></i>
+                </a>
+                <a href="#">
+                  <i class="fab fa-youtube fa-2x tx-rojo"></i>
+                </a>
+                <p class="margin-top-16 tx-12">
+                  @hampiyura<br />
+                  Comparte tu experiencia con #HampiYura
+                </p>
+                <p class="margin-top-16 tx-12">¡Sumate!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="bg-gris-claro padding-48">
+        <div class="w-80 margin-auto">
+          <h2 class="text-center filohampi margin-bottom-32">
+            Preguntas Frecuentes
+          </h2>
+          <div class="secciones">
+            <div class="valores w-50">
+              <div class="bg-blanco padding-16 margin-8 border-8">
+                <h4 class="filohampi">
+                  ¿Los productos tienen efectos secundarios?
+                </h4>
+                <p class="tx-14 py-8">
+                  Nuestros productos son naturales, pero siempre recomendamos
+                  consultar con un profesional de la salud antes de comenzar
+                  cualquier tratamiento.
+                </p>
+              </div>
+            </div>
+            <div class="valores w-50">
+              <div class="bg-blanco padding-16 margin-8 border-8">
+                <h4 class="filohampi">¿Hacen envíos a todo el país?</h4>
+                <p class="tx-14 py-8">
+                  Sí, realizamos envíos a toda Argentina. Los tiempos de entrega
+                  varían según la ubicación, generalmente entre 3-7 días
+                  hábiles.
+                </p>
+              </div>
+            </div>
+            <div class="valores w-50">
+              <div class="bg-blanco padding-16 margin-8 border-8">
+                <h4 class="filohampi">¿Los productos son orgánicos?</h4>
+                <p class="tx-14 py-8">
+                  La mayoría de nuestros productos utilizan ingredientes
+                  orgánicos certificados. Puedes verificar esta información en
+                  la descripción de cada producto.
+                </p>
+              </div>
+            </div>
+            <div class="valores w-50">
+              <div class="bg-blanco padding-16 margin-8 border-8">
+                <h4 class="filohampi">¿Ofrecen consultoría personalizada?</h4>
+                <p class="tx-14 py-8">
+                  Sí, nuestros especialistas en fitoterapia ofrecen consultas
+                  personalizadas para ayudarte a elegir los productos más
+                  adecuados para ti.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="bg-cuidadopiel padding-48 text-center">
+        <h2 class="filohampi tx-blanco margin-bottom-16">
+          ¿Listo para Comenzar tu Viaje Natural?
+        </h2>
+        <p class="margin-bottom-24 w-60 margin-auto">
+          Explora nuestra amplia gama de productos naturales y descubre cómo la
+          fitoterapia puede transformar tu bienestar.
+        </p>
+        <a href="/products" class="btn-primary-hampi">Ver Productos</a>
+      </section>
+    </main>
+
+    <!--Acá va el footer-->
+    <%- include ("./partials/footer.ejs") %>
+  </body>
 </html>
