@@ -142,7 +142,7 @@ header {
 .secciones {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   padding-bottom: 10px;
   margin: 0 auto;
@@ -169,6 +169,11 @@ header {
   display: flex;
   flex-wrap: wrap;
   margin: 24px;
+}
+
+.no-disc {
+  list-style-type: none;
+  padding: 0;
 }
 
 .content-gift {
