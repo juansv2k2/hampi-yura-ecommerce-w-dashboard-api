@@ -124,5 +124,14 @@
     "stock": 2,
     "image": "1755179312166_297951009.png",
     "deleted": false
+  },
+  {
+    "id": 16,
+    "name": "test 2",
+    "price": 5000,
+    "category": "Belleza",
+    "stock": 4,
+    "image": "1755261017626_988058281.png",
+    "deleted": false
   }
 ]

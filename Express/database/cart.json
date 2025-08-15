@@ -48,5 +48,15 @@
         "subTotal": 1500,
         "deleted": true,
         "createdAt": "2025-08-14T14:15:33.305Z"
+    },
+    {
+        "id": 6,
+        "userId": 1,
+        "productId": 1,
+        "quantity": 1,
+        "price": 1200,
+        "subTotal": 1200,
+        "deleted": true,
+        "createdAt": "2025-08-15T12:27:57.107Z"
     }
 ]
